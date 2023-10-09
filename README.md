@@ -11,7 +11,7 @@ A BrainBox-like web game
 
 ### How to install:
 
-***Windows:***
+***Windows / Mac OS:***
 
 Download from https://www.docker.com/products/docker-desktop/
 
