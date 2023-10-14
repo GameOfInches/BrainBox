@@ -31,7 +31,7 @@ Download from https://www.docker.com/products/docker-desktop/
 
   2. Run the following command `docker build -t {name_of_your_image} .`
 
-  3. After the docker image is built, run the following command to run the container `docker run -e MYSQL_ROOT_PASSWORD={example_password_for_root_user} -e MYSQL_PASSWORD={example_password_for_default_user} {name_of_your_image}`
+  3. After the docker image is built, run the following command to run the container `docker run -e MYSQL_ROOT_PASSWORD={example_password_for_root_user} -e MYSQL_PASSWORD={example_password_for_default_user} -p 3306:3306 {name_of_your_image}`
   
   ***!! Keep in mind that the MYSQL_PASSWORD should be the same password as the one provided in schema.sql file !!***
 
