@@ -1,22 +1,19 @@
-const http = require("http");
 const https = require('https');
 const fs = require('fs');
 const express = require('express');
 
 const app = express();
 
-const httpPort = 8080;
 const httpsPort = 443;
 
-const options = {
-    key: fs.readFileSync('/app/certificates/key.pem'),
-    cert: fs.readFileSync('/app/certificates/cert.pem')
-  };
-  
-  const httpServer = http.createServer((req, res) => {
-    res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
-    res.end();
-  });
+const hasCertificates = fs.existsSync('/app/certificates/key.pem') && fs.existsSync('/app/certificates/cert.pem');
+
+if(hasCertificates){
+const options =
+  {
+      key: fs.readFileSync('/app/certificates/key.pem', 'utf8'),
+      cert: fs.readFileSync('/app/certificates/cert.pem', 'utf8')
+    }
   
   const httpsServer = https.createServer(options, app);
   
@@ -25,11 +22,20 @@ const options = {
 
     res.end();
   });
-  
-  httpServer.listen(httpPort, () => {
-    console.log(`HTTP server is running on port ${httpPort}`);
-  });
-  
+
   httpsServer.listen(httpsPort, () => {
     console.log(`HTTPS server is running on port ${httpsPort}`);
   });
+} else {
+    const http = require("http");
+    const httpPort = 8080;
+  
+    const httpServer = http.createServer((req, res) => {
+      res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
+      res.end();
+    });
+  
+    httpServer.listen(httpPort, () => {
+      console.log(`HTTP server is running on port ${httpPort}`);
+    });
+  }
