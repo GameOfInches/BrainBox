@@ -4,6 +4,7 @@ A BrainBox-like web game
 ## Prerequisites:
 
 ***1. Docker***
+
 ***2. KeePass***
 
 
@@ -50,7 +51,7 @@ For KeePass, use the link for Windows / Mac OS
 
   4. The website server is now running on localhost on port 8080 but unprotected
   
-  ***Optional: Webserver with self-signed dev certificate ***
+  ***Optional: Webserver with self-signed dev certificate***
   1. Run the `cert_dependencies.ps` script
   2. On your Terminal, go to the folder including the Dockerfile for the website server (with `cd Website`)
   3. Open the Certificates folder inside Website folder and open the .kdbs file inside with KeePass software (Get the password from Krasi)
