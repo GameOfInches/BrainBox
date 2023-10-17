@@ -26,7 +26,7 @@ if (hasCertificates) {
   });
 } else {
   const http = require("http");
-  const httpPort = 8080;
+  const httpPort = 8081;
 
   const httpServer = http.createServer((req, res) => {
     res.write("<h1>Hello World / HTTP!</h1>");
