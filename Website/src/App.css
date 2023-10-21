@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@500&family=Unkempt&display=swap');
 
 body {
-    background-image: url('../pictures/background4.jpg');
+    background-image: url('./pictures/background4.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center center;
@@ -39,6 +39,8 @@ body {
     top: 50%;
     left: 54%;
     transform: translate(-50%, -50%);
+    background-image: url('./pictures/planet.png');
+    background-size: cover;
 }
 
 .play-button {
@@ -113,7 +115,7 @@ body {
         left: 20px;
         width: 60px;
         height: 60px;
-        background-image: url('../pictures/planet.png');
+        background-image: url('./pictures/planet.png');
         background-size: cover;
       }
       

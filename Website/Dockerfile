@@ -11,7 +11,7 @@ COPY . /app/
 WORKDIR /app
 
 RUN npm init -y && \
-    npm install express
+    npm install
 
 CMD ["mkcert", "-install"]
-CMD ["node", "index.js"]
+CMD ["npm", "start"]
