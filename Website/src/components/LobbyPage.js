@@ -7,7 +7,9 @@ const handleGameStartClick = () => {
     const lobbyfull = 0;
     
     if(lobbyfull){
-
+        //the game starts
+        <Link to="/game">
+            </Link>
     }
     else{
       //To-DO: throw an error
