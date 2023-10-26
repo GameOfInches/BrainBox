@@ -6,13 +6,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import java.util.List;
 import com.api.model.GameData;
+import com.api.model.GetGameData;
+import com.api.model.GameDataRowMapper;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8081")
 @RequestMapping("/api")
 class GameController {
 
@@ -38,5 +46,51 @@ class GameController {
            return ResponseEntity.badRequest().body("Invalid 'action' parameter. It must be 'databaseInsert'."); 
         }
     }
+
+    @PostMapping("/update")
+    public ResponseEntity<String> updateData(@RequestBody GameData gameData) {
+        if (gameData.getAction() != null && gameData.getAction().equals("userUpdate")) {
+        try {
+            String sql = "UPDATE BrainBox_lobbies SET secondUserId = ? WHERE lobbyId = ?";
+            jdbcTemplate.update(sql, gameData.getUser2(), gameData.getGameid());
+            return ResponseEntity.ok("User 2 data successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: Failed to update user 2 data.");
+        }
+        } else{
+           return ResponseEntity.badRequest().body("Invalid 'action' parameter. It must be 'userUpdate'."); 
+        }
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<List<GetGameData>> getData(@RequestParam("action") String action, @RequestParam("gameid") String gameid) {
+    try {
+        System.out.println("Received GET request with action: " + action + " and gameid: " + gameid);
+
+        if ("databaseFetch".equals(action)) {
+            String sql = "SELECT * FROM BrainBox_lobbies WHERE lobbyId = ?";
+            List<GetGameData> gameDataList = jdbcTemplate.query(sql, new GameDataRowMapper(), gameid);
+
+            if (gameDataList != null && !gameDataList.isEmpty()) {
+                System.out.println("Query executed successfully. Data fetched: " + gameDataList);
+                return ResponseEntity.ok(gameDataList);
+            } else {
+                System.out.println("No data found for gameid: " + gameid);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+        } else {
+            System.out.println("Invalid 'action' parameter. It must be 'databaseFetch'.");
+            return ResponseEntity.badRequest().body(null);
+        }
+        } catch (Exception e) {
+        e.printStackTrace();
+        System.err.println("Error occurred while processing the request.");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+
+
 }
 
