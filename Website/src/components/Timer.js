@@ -3,11 +3,11 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import '../App.css';
 
 const Timer = ({ initialTime }) => {
-  const timerSize = 60; // Size in pixels
+  const timerSize = 72; // Size in pixels
   const timerDuration = initialTime / 1000; // Convert milliseconds to seconds
 
   return (
-    <div className="timer">
+    <div className="">
       <CountdownCircleTimer
         isPlaying
         duration={timerDuration}

@@ -4,12 +4,11 @@ import '../App.css';
 
 const handleGameStartClick = () => {
     //To-DO: Check if lobby is full before start, if not - throw an error
-    const lobbyfull = 0;
+    const lobbyfull = 1;
     
     if(lobbyfull){
         //the game starts
-        <Link to="/game">
-            </Link>
+        
     }
     else{
       //To-DO: throw an error
@@ -31,7 +30,8 @@ function LobbyPage() {
                 <div className="player1">PLAYER 1</div>
                 <div className="player2">PLAYER 2</div>
             </div>
-            <div className="start-game-button" onClick={() => this.handleGameStartClick()}>START GAME</div>
+            <Link to="/game"><div className="start-game-button" onClick={() => handleGameStartClick()}>
+            START GAME</div></Link>
         </div>
     );
 }

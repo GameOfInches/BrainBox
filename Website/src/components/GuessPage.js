@@ -1,23 +1,8 @@
 import React, { Component } from 'react';
-import Timer from './timer'; 
+import Timer from './Timer';
 import '../App.css';
 
-class AnswerPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      question: '', // Initialize with an empty question.
-      options: [], // Initialize with an empty array of options.
-      timer: 10, // Set the initial timer value.
-      goToNextQuestion: false //redirect flag
-    };
-  }
-
-  componentDidMount() {
-    // Fetch your random question from a database or API.
-    // Update the state with the fetched question and options.
-    this.fetchRandomQuestion();
-  }
+const GuessPage = ({username}) => {
 
   fetchRandomQuestion = () => {
     // Implement your logic to fetch a random question and options.
@@ -30,9 +15,6 @@ class AnswerPage extends Component {
   handleTimerCompletion = () => {
     this.setState({  });
   };
-
-  render() {
-    const { question, options, timer } = this.state;
 
     return (
       <div className="answer-page">
@@ -56,6 +38,5 @@ class AnswerPage extends Component {
       </div>
     );
   }
-}
 
-export default AnswerPage;
+export default GuessPage;

@@ -1,26 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css';
+import QuestionPage from './QuestionPage';
 
-const handleGameStartClick = () => {
-    //To-DO: Check if lobby is full before start, if not - throw an error
-    const lobbyfull = 0;
-    
-    if(lobbyfull){
-        //the game starts
-        <Link to="/game">
-            </Link>
-    }
-    else{
-      //To-DO: throw an error
-    }
-  }
+
   
 function GameStart() {
+  //placeholder for username
+  const username = "Player 1";
+  const [isDisplayed, setIsDisplayed] = useState(false);
+
+  useEffect(() => {
+    setInterval(() => {
+      setIsDisplayed(true);
+    }, 1000);
+  }, []);
+
+
     return (
-        <div className="lobby-page">
+      <div>
+            <div className="logo"></div>
+            <a href="index.html">
+              <div className="home-button">
+                <i className="fas fa-home"></i>
               </div>
-    );
+            </a>
+            {isDisplayed ? <QuestionPage username = {username} /> : <div className="welcome-text">WELCOME TO MEMOR.IO! . . .</div>}
+            </div>
+      );
 }
 
 export default GameStart;

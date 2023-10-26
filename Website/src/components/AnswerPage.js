@@ -1,49 +1,52 @@
-import React, { Component } from 'react';
-import Timer from './timer';
+import React, {useState, useEffect } from 'react';
+import Timer from './Timer';
 import '../App.css';
 
-class AnswerPage extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        question: '', // Initialize with an empty question.
-        options: [], // Initialize with an empty array of options.
-        timer: 10, // Set the initial timer value.
-        goToNextQuestion: false //redirect flag
-      };
-    }
-  
-    componentDidMount() {
-      // Fetch your random question from a database or API.
-      // Update the state with the fetched question and options.
-      this.fetchRandomQuestion();
-    }
-  
-    fetchRandomQuestion = () => {
-      // Implement your logic to fetch a random question and options.
-      // Update the state with the question and options.
+const AnswerPage= ({username}) => {
+  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeOut, setTimeOut] = useState(false);
+  //placeholder for answer options
+  const options = ["Yes", "No"]
+
+  useEffect(() => {
+    // Start the timer countdown
+    const countdownInterval = setInterval(() => {
+      if (timeLeft > 0) {
+        setTimeLeft(timeLeft - 1);
+      } else {
+        clearInterval(countdownInterval);
+        setTimeOut(true);
+      }
+    }, 1000);
+
+    // Cleanup the interval on component unmount
+    return () => {
+      clearInterval(countdownInterval);
+     // handleTimerCompletion();
+    };
+  }, [timeLeft]);
+    /*fetchRandomQuestion = () => {
+      console.log("question fetched")
     };
   
     handleAnswerClick = (selectedOption) => {
       // Implement your logic to handle the selected answer.
+      console.log("Answer clicked")
     };
     handleTimerCompletion = () => {
-      this.setState({  });
-    };
-  
-    render() {
-      const { question, options, timer } = this.state;
+      console.log("Timer completed")
+    };*/
   
       return (
         <div className="answer-page">
-          <div className="timer">
-            <Timer initialTime={timer * 1000}  onCompletion={this.handleTimerCompletion}/> {10000}
+          <div className="">
+            <Timer initialTime={10 * 1000}/> {10000}
           </div>
           <div className="logo">
             <img src="planet.png" alt="Logo" />
           </div>
           <div className="question">
-            <h2>{question}</h2>
+            <h2>{"What?"}</h2>
           </div>
           <div className="options">
             {options.map((option, index) => (
@@ -58,6 +61,5 @@ class AnswerPage extends Component {
         </div>
       );
     }
-  }
   
   export default AnswerPage;
