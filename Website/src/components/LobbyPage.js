@@ -1,19 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 
-const handleGameStartClick = (lobbyfull) => {
-    //To-DO: Check if lobby is full before start, if not - throw an error
-    
-    if(lobbyfull){
-        //the game starts
-        <Link to="/game">
-            </Link>
-    }
-    else{
-      //To-DO: throw an error
-    }
-  }
-  
 function LobbyPage() {
   const { lobbyId } = useParams();
   const navigate = useNavigate();
@@ -21,6 +8,7 @@ function LobbyPage() {
 
   const [lobbies, setLobbies] = useState({});
   const [loading, setLoading] = useState(true);
+  const [isFull, setIsFull] = useState(false); // State to track if the lobby is full
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,18 +22,14 @@ function LobbyPage() {
             if (data.length > 0) {
               const { creatorUserId, secondUserId } = data[0];
               setLobbies({ ...lobbies, [lobbyId]: { player1: creatorUserId, player2: secondUserId } });
-            }
-            else if(!secondUserId.equals("0")){
-              const isFull = true;
-              handleGameStartClick(isFull);
+              const lobbyIsFull = secondUserId !== '0';
+              setIsFull(lobbyIsFull); // Update the isFull state
             }
           } catch (error) {
-            // Handle invalid JSON response
             console.error(error);
             alert('Invalid JSON response.');
           }
         } else {
-          // Handle non-successful response (e.g., 404 Not Found)
           setLoading(false);
           alert('Lobby not found. Redirecting to homepage.');
           navigate('/');
@@ -53,7 +37,6 @@ function LobbyPage() {
 
         setLoading(false);
       } catch (error) {
-        // Handle network errors
         console.error(error);
         setLoading(false);
         alert('Error fetching lobby data.');
@@ -62,6 +45,15 @@ function LobbyPage() {
 
     fetchData();
   }, [lobbyId, location]);
+
+  const handleGameStartClick = () => {
+    if (isFull) {
+      const gameURL = `/lobby/${lobbyId}/game`;
+      navigate(gameURL);
+    } else {
+      alert('Lobby is not full, please wait for the second player.');
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -78,7 +70,9 @@ function LobbyPage() {
         <div className="player1">PLAYER 1: {currentLobby.player1}</div>
         <div className="player2">PLAYER 2: {currentLobby.player2}</div>
       </div>
-      <div className="start-game-button">START GAME</div>
+      <div className="start-game-button" onClick={handleGameStartClick}>
+        START GAME
+      </div>
     </div>
   );
 }
