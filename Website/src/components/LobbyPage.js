@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 
-const handleGameStartClick = () => {
+const handleGameStartClick = (lobbyfull) => {
     //To-DO: Check if lobby is full before start, if not - throw an error
-    const lobbyfull = 0;
     
     if(lobbyfull){
         //the game starts
@@ -33,9 +32,12 @@ function LobbyPage() {
           try {
             const data = await response.json();
             if (data.length > 0) {
-              // Assuming data is an array with player1 and player2 properties
               const { creatorUserId, secondUserId } = data[0];
               setLobbies({ ...lobbies, [lobbyId]: { player1: creatorUserId, player2: secondUserId } });
+            }
+            else if(!secondUserId.equals("0")){
+              const isFull = true;
+              handleGameStartClick(isFull);
             }
           } catch (error) {
             // Handle invalid JSON response
