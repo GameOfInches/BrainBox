@@ -5,6 +5,14 @@ import '../App.css';
 const AnswerPage= ({username}) => {
   const [timeLeft, setTimeLeft] = useState(10);
   const [timeOut, setTimeOut] = useState(false);
+  const [answerChosen, setAnswerChosen] = useState(false);
+  const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
+  //placeholder for score
+  const score = 0
+
+  //placeholder for question
+
+  //placeholder for correct answer
   //placeholder for answer options
   const options = ["Yes", "No"]
 
@@ -25,23 +33,48 @@ const AnswerPage= ({username}) => {
      // handleTimerCompletion();
     };
   }, [timeLeft]);
-    /*fetchRandomQuestion = () => {
-      console.log("question fetched")
-    };
+
+
   
-    handleAnswerClick = (selectedOption) => {
+  useEffect(() => {
+    //0 for no answer
+    // 1 for correct answer
+    // 2 for wrong answer
+    if (timeOut){
+      console.log("time out")
+    }
+    if (answerChosen){
+      console.log("answer chosen")
+      //TO-DO: logic to check if answer is correct
+      setAnswerIsCorrect(true)
+    }
+    return () => {
+      if (answerIsCorrect){
+        score += 100
+      }
+    };
+  }, [timeOut, answerChosen]);
+
+  
+    const handleAnswerClick = (option) => {
       // Implement your logic to handle the selected answer.
       console.log("Answer clicked")
+      setAnswerChosen(true)
     };
+    /*
     handleTimerCompletion = () => {
       console.log("Timer completed")
-    };*/
-  
+    };
+  */
       return (
         <div className="answer-page">
           <div className="">
-            <Timer initialTime={10 * 1000}/> {10000}
+            <Timer initialTime={10 * 1000}/> 
           </div>
+          <div>Score is: {score}</div>
+          {timeOut ? <div> Time's up! </div> 
+                 : answerIsCorrect == 1 ? <div>Answer is correct!</div>
+                      : <></>}
           <div className="logo">
             <img src="planet.png" alt="Logo" />
           </div>
@@ -52,7 +85,7 @@ const AnswerPage= ({username}) => {
             {options.map((option, index) => (
               <button
                 key={index}
-                onClick={() => this.handleAnswerClick(option)}
+                onClick={() => handleAnswerClick(option)}
               >
                 {option}
               </button>

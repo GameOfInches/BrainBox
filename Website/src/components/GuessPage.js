@@ -19,7 +19,7 @@ const GuessPage = ({username}) => {
     return (
       <div className="answer-page">
         <div className="timer">
-          <Timer initialTime={timer * 1000}  onCompletion={this.handleTimerCompletion}/> {10000}
+          <Timer initialTime={10 * 1000}  onCompletion={this.handleTimerCompletion}/> {10000}
         </div>
         <div className="logo">
           <img src="planet.png" alt="Logo" />
