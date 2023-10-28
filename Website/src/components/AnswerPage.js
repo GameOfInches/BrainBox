@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react';
 import Timer from './Timer';
 import '../App.css';
 
-const AnswerPage= ({username}) => {
+const AnswerPage= ({username, roundNumber, setRoundNumber}) => {
   const [timeLeft, setTimeLeft] = useState(10);
   const [timeOut, setTimeOut] = useState(false);
   const [answerChosen, setAnswerChosen] = useState(false);
@@ -52,6 +52,7 @@ const AnswerPage= ({username}) => {
       if (answerIsCorrect){
         score += 100
       }
+      setRoundNumber(roundNumber + 1)
     };
   }, [timeOut, answerChosen]);
 
@@ -68,13 +69,15 @@ const AnswerPage= ({username}) => {
   */
       return (
         <div className="answer-page">
+          <div>Round {roundNumber}</div>
           <div className="">
-            <Timer initialTime={10 * 1000}/> 
+            <Timer initialTime={10 * 1000} isPlaying={!answerChosen}/> 
           </div>
           <div>Score is: {score}</div>
           {timeOut ? <div> Time's up! </div> 
-                 : answerIsCorrect == 1 ? <div>Answer is correct!</div>
-                      : <></>}
+                 : answerIsCorrect ? <div>Answer is correct!</div>
+                      : !answerIsCorrect && answerChosen ? <div>Answer is incorrect!</div>
+                          : <></>}
           <div className="logo">
             <img src="planet.png" alt="Logo" />
           </div>

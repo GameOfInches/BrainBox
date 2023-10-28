@@ -3,7 +3,7 @@ import '../App.css';
 import Timer from './Timer';
 import AnswerPage from './AnswerPage';
 
-const QuestionPage = (username) => {
+const QuestionPage = ({username, roundNumber, setRoundNumber}) => {
     const [timeLeft, setTimeLeft] = useState(10);
     const [timeOut, setTimeOut] = useState(false);
     
@@ -28,8 +28,8 @@ const QuestionPage = (username) => {
     return (
       <div className="question-card">
         
-        {timeOut ? <AnswerPage username = {username}/> : <><div className="">
-            <Timer initialTime={10 * 1000} />
+        {timeOut ? <AnswerPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} /> : <><div className="">
+            <Timer initialTime={10 * 1000} isPlaying={true} />
           </div>
         <div className="logo">
           <img src="planet.png" alt="Logo" />
