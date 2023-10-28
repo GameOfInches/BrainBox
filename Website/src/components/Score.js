@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 
 
 const Score = ({user, score }) => {
-    const timerSize = 72; // Size in pixels
-    const timerDuration = initialTime / 1000; // Convert milliseconds to seconds
+    ///TO-DO: import score from the database
   
     return (
       <div className="">

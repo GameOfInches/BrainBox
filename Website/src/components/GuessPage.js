@@ -3,18 +3,8 @@ import Timer from './Timer';
 import '../App.css';
 
 const GuessPage = ({username}) => {
+  //To-Do: pull from the database if the user has answered correctly or not
 
-  fetchRandomQuestion = () => {
-    // Implement your logic to fetch a random question and options.
-    // Update the state with the question and options.
-  };
-
-  handleGuessAnswerClick = (selectedOption) => {
-    // Implement your logic to handle the selected answer.
-  };
-  handleTimerCompletion = () => {
-    this.setState({  });
-  };
 
     return (
       <div className="answer-page">

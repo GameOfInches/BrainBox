@@ -16,6 +16,10 @@ const handleGameStartClick = () => {
   }
   
 function LobbyPage() {
+    //TO-DO: import a set of questions from database
+
+
+
     return (
         <div className="lobby-page">
             <div className="logo"></div>

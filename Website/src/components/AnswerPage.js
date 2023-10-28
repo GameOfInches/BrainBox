@@ -7,6 +7,8 @@ const AnswerPage= ({username, roundNumber, setRoundNumber}) => {
   const [timeOut, setTimeOut] = useState(false);
   const [answerChosen, setAnswerChosen] = useState(false);
   const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
+
+  
   //placeholder for score
   const score = 0
 
@@ -37,9 +39,6 @@ const AnswerPage= ({username, roundNumber, setRoundNumber}) => {
 
   
   useEffect(() => {
-    //0 for no answer
-    // 1 for correct answer
-    // 2 for wrong answer
     if (timeOut){
       console.log("time out")
     }
