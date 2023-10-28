@@ -21,6 +21,7 @@ function HomePage() {
   const handleSubmit = () => {
     const apiUrl = 'http://localhost:8080/api';
     const insertEndpoint = `${apiUrl}/insert`;
+    const createEndpoint = `${apiUrl}/create`;
     if (username.trim() !== '') {
       const lobbyId = generateRandomString(10);
       // Create a timestamp as a string
@@ -46,15 +47,39 @@ function HomePage() {
             const newURL = `/lobby/${lobbyId}`;
             navigate(newURL, { state: { username } });
           } else {
-            // Handle API request error
             console.error('Failed to create lobby:', response.status);
           }
         })
         .catch((error) => {
           console.error('Error sending API request:', error);
         });
-    } else {
-      // Handle empty username error
+
+      fetch(createEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            action: 'tableCreate',
+            user1: username,
+            user2: '0',
+            gameid: lobbyId,
+            timestamp: formattedDate,
+          }),
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log('table created successfully for lobby:', lobbyId);
+            } else {
+              console.error('Failed to create table for lobby:', response.status);
+            }
+          })
+          .catch((error) => {
+            console.error('Error sending API request:', error);
+          });
+    } 
+    else {
+      alert('No name has been provided! Failed creating a lobby!');
     }
   };
 

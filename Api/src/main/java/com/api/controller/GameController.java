@@ -46,7 +46,6 @@ class GameController {
            return ResponseEntity.badRequest().body("Invalid 'action' parameter. It must be 'databaseInsert'."); 
         }
     }
-
     @PostMapping("/update")
     public ResponseEntity<String> updateData(@RequestBody GameData gameData) {
         if (gameData.getAction() != null && gameData.getAction().equals("userUpdate")) {
@@ -87,6 +86,24 @@ class GameController {
         e.printStackTrace();
         System.err.println("Error occurred while processing the request.");
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+    @PostMapping("/create")
+    public ResponseEntity<String> createTable(@RequestBody GameData gameData) {
+        if (gameData.getAction() != null && gameData.getAction().equals("tableCreate")) {
+        try {
+            String sql = "CREATE TABLE BrainBox_? (Id TINYINT(20) PRIMARY KEY AUTO_INCREMENT, questionName VARCHAR(255), questionAnswerA VARCHAR(255), questionAnswerB VARCHAR(255), questionAnswerC VARCHAR(255), questionAnswerD VARCHAR(255), correctAnswer VARCHAR(1), player1 VARCHAR(255), player2 VARCHAR(255), pointsPlayer1 INT, pointsPlayer2 INT, answeredCorrectly VARCHAR(10))";
+            jdbcTemplate.query(sql, gameData.getGameid());
+
+            sql = "INSERT INTO BrainBox_? (Id, questionName, questionAnswerA, questionAnswerB, questionAnswerC, questionAnswerD, correctAnswer, player1, player2, pointsPlayer1, pointsPlayer2, answeredCorrectly) SELECT DISTINCT questionName, questionAnswerA, questionAnswerB, questionAnswerC, questionAnswerD, correctAnswer, ?, ? FROM BrainBox_questions ORDER BY RAND() LIMIT 10";
+            jdbcTemplate.update(sql, gameData.getGameid(), gameData.getUser1(), gameData.getUser2());
+            return ResponseEntity.ok("Table created successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: Failed to create table.");
+        }
+        } else{
+           return ResponseEntity.badRequest().body("Invalid 'action' parameter. It must be 'tableCreate'."); 
         }
     }
 
