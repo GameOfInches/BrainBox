@@ -5,7 +5,7 @@ const ResultsPage= ({}) => {
 
   
     return (
-      <></>
+      <>Hi Magi!</>
     );
   };
 

@@ -13,27 +13,32 @@ function GameStart() {
   const [turnOfPlayer, setTurnOfPlayer] = useState(1);
   const [numberOfRounds, setNumberOfRounds] = useState(5);
   const [roundNumber, setRoundNumber] = useState(1);
+  const [toNewRound, setToNewRound] = useState(false);
 
   useEffect(() => {
     setInterval(() => {
       setIsDisplayed(true);
-    }, 1000);
+    }, 3000);
   }, []);
 
-
+console.log("Round number: " + roundNumber)
     return (
       <div>
             <div className="logo"></div>
-            <a href="index.html">
-              <div className="home-button">
-                <i className="fas fa-home"></i>
-              </div>
-            </a>
-            {roundNumber >= 6 ? <ResultsPage /> : isDisplayed ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} /> : <div className="welcome-text">WELCOME TO MEMOR.IO! . . .</div>}
-            </div>
+          {!isDisplayed ? <div className="welcome-text">WELCOME TO MEMOR.IO! . . .</div> :
+           {roundNumber} >= 4 ? <ResultsPage /> 
+           : roundNumber == 3 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
+           : roundNumber == 4 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
+           : roundNumber == 5 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
+           : <ResultsPage /> }
+           </div>
       );
 }
 
 export default GameStart;
 
 
+
+
+//        {roundNumber >= 6 ? <ResultsPage /> : isDisplayed ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/> : <div className="welcome-text">WELCOME TO MEMOR.IO! . . .</div>}
+     

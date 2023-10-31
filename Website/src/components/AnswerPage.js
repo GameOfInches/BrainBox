@@ -1,14 +1,14 @@
 import React, {useState, useEffect } from 'react';
 import Timer from './Timer';
 import '../App.css';
+import GameStart from './GameStart';
 
-const AnswerPage= ({username, roundNumber, setRoundNumber}) => {
+const AnswerPage= ({username, roundNumber, setRoundNumber, toNewRound, setToNewRound}) => {
   const [timeLeft, setTimeLeft] = useState(10);
   const [timeOut, setTimeOut] = useState(false);
   const [answerChosen, setAnswerChosen] = useState(false);
   const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
 
-  
   //placeholder for score
   const score = 0
 
@@ -52,6 +52,7 @@ const AnswerPage= ({username, roundNumber, setRoundNumber}) => {
         score += 100
       }
       setRoundNumber(roundNumber + 1)
+      setToNewRound(true)
     };
   }, [timeOut, answerChosen]);
 
@@ -66,6 +67,9 @@ const AnswerPage= ({username, roundNumber, setRoundNumber}) => {
       console.log("Timer completed")
     };
   */
+
+
+    
       return (
         <div className="answer-page">
           <div>Round {roundNumber}</div>
