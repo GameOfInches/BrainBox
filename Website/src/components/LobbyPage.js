@@ -48,7 +48,7 @@ function LobbyPage() {
 
   const handleGameStartClick = () => {
     if (isFull) {
-      const gameURL = `/lobby/${lobbyId}/game`;
+      const gameURL = `/${lobbyId}/game`;
       navigate(gameURL);
     } else {
       alert('Lobby is not full, please wait for the second player.');
