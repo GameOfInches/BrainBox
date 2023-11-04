@@ -27,6 +27,8 @@ console.log("Round number: " + roundNumber)
             <div className="logo"></div>
           {!isDisplayed ? <div className="welcome-text">WELCOME TO MEMOR.IO! . . .</div> :
            {roundNumber} >= 4 ? <ResultsPage /> 
+           : roundNumber == 1 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
+           : roundNumber == 2 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
            : roundNumber == 3 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
            : roundNumber == 4 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
            : roundNumber == 5 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
