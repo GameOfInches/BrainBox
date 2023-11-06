@@ -72,7 +72,6 @@ const AnswerPage= ({username, roundNumber, setRoundNumber, toNewRound, setToNewR
     
       return (
         <div className="answer-page">
-          <div>Round {roundNumber}</div>
           <div className="">
             <Timer initialTime={10 * 1000} isPlaying={!answerChosen}/> 
           </div>

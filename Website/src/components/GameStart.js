@@ -15,6 +15,7 @@ function GameStart() {
   const [roundNumber, setRoundNumber] = useState(1);
   const [toNewRound, setToNewRound] = useState(false);
 
+
   useEffect(() => {
     setInterval(() => {
       setIsDisplayed(true);
@@ -30,8 +31,6 @@ console.log("Round number: " + roundNumber)
            : roundNumber == 1 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
            : roundNumber == 2 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
            : roundNumber == 3 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
-           : roundNumber == 4 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
-           : roundNumber == 5 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
            : <ResultsPage /> }
            </div>
       );
