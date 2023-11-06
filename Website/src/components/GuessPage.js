@@ -25,8 +25,8 @@ const GuessPage = ({username}) => {
             </button>
           ))}
         </div>
-      </div>
     );
+
   }
 
 export default GuessPage;

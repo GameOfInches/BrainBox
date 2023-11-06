@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 
 
 const ResultsPage= ({}) => {
-
-  
     return (
       <>Hi Magi!</>
     );

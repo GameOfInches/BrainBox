@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import QuestionPage from './QuestionPage';
 import ResultsPage from './ResultsPage';
-
   
 function GameStart() {
   //placeholder for username
@@ -34,9 +33,13 @@ console.log("Round number: " + roundNumber)
            : <ResultsPage /> }
            </div>
       );
+
 }
 
 export default GameStart;
+
+//        {roundNumber >= 6 ? <ResultsPage /> : isDisplayed ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/> : <div className="welcome-text">WELCOME TO MEMOR.IO! . . .</div>}
+
 
 
 

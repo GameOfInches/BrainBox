@@ -49,7 +49,8 @@ const QuestionPage = ({username, roundNumber, setRoundNumber, toNewRound, setToN
         </div></>}
         
       </div>
+         
     );
-  };
+};
   
   export default QuestionPage;
