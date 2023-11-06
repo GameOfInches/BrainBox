@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@500&family=Unkempt&display=swap');
 
 body {
-    background-image: url('./pictures/background4.jpg');
+    background-image: url('./pictures/background5.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center center;
@@ -47,7 +47,7 @@ body {
     width: 341px;
     height: 106px;
     margin-top: 30px;
-    background-color: #5bde77;
+    background-color: #f5cc5b;
     color: #fff;
     padding: 10px 20px;
     border-radius: 20px;
@@ -64,8 +64,8 @@ body {
 }
 
 .play-button:hover {
-    background-color: #66e381;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  background-color: #f7b705;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   }
 
 
@@ -74,7 +74,7 @@ body {
     margin-bottom: 50px;
     max-width: 800px;
     padding: 20px;
-    background: #D9D9D9;
+    background-color: rgba(145, 107, 1, 0.6);
     font-size: 30px;
     font-weight: 400;
     line-height: 40px;
@@ -82,6 +82,7 @@ body {
     text-align: middle;
     border-radius: 20px;
     transition: all 0.2s ease-in-out;
+    overflow: hidden;
 }
 
 .rules ul {
@@ -121,14 +122,17 @@ body {
       
       .home-button {
         position: absolute;
-        top: 10px;
-        right: 20px;
-        background-color: #007bff;
-        color: #fff;
-        padding: 25px 25px;
+        top: 30px;
+        right: 60px;
+        background-color: none;
+        color:#000000;
+        padding:0;
         border: none;
         cursor: pointer;
         border-radius: 20px;
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
       }
       
       .lobby-heading {
@@ -140,22 +144,22 @@ body {
       }
       
       .send-link {
-        font-size: 35px;
+        font-size: 30px;
         color: black;
         position: absolute;
-        top: 120px;
+        top: 0;
       }
 
       .players-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 20px;
+        margin-top: 120px;
     }
 
       .player1,
 .player2 {
-    background-color: #007bff;
+    background-color: rgba(145, 107, 1, 0.6);
     color: #fff;
     width: 400px;
     height: 200px;
@@ -166,19 +170,19 @@ body {
       
       
       .start-game-button {
-        background-color: #5bde77;
+        background-color:  #f5cc5b;;
         color: #fff;
         padding: 30px 70px;
         font-size: 18px;
-        border-radius: 10px;
+        border-radius: 15px;
         border: none;
         cursor: pointer;
         margin-top: 100px;
         transition: background-color 0.3s;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    box-shadow:  rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
       }
     
       .start-game-button:hover {
-        background-color: #66e381;
+        background-color: #f7b705;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
       }
