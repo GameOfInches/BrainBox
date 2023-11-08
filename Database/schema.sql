@@ -18,6 +18,12 @@ CREATE TABLE IF NOT EXISTS BrainBox_questions (
 	
 );
 
+LOAD DATA INFILE '/home/questions.csv'
+INTO TABLE BrainBox_questions
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON BrainBox.BrainBox_lobbies TO 'BrainboxDefault'@'%';
 FLUSH PRIVILEGES;
