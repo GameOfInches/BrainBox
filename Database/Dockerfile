@@ -9,3 +9,4 @@ ENV MYSQL_PASSWORD=
 
 COPY schema.sql /docker-entrypoint-schemadb.d/
 COPY schema.sql /docker-entrypoint-initdb.d/
+COPY questions.csv /home/questions.csv/
