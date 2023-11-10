@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { formatISO, endOfDay } from 'date-fns';
+//import { formatISO, endOfDay } from 'date-fns';
 
 
 function HomePage() {
@@ -26,7 +26,7 @@ function HomePage() {
       const lobbyId = generateRandomString(10);
       // Create a timestamp as a string
       const timestamp = new Date();
-      const formattedDate = formatISO(timestamp, 'yyyy-MM-dd HH:mm:ss').substring(0, 19);;
+      //const formattedDate = formatISO(timestamp, 'yyyy-MM-dd HH:mm:ss').substring(0, 19);;
       
       // Send a POST request to your API
       fetch(insertEndpoint, {
@@ -39,7 +39,7 @@ function HomePage() {
           user1: username,
           user2: '0',
           gameid: lobbyId,
-          timestamp: formattedDate,
+          timestamp: timestamp,
         }),
       })
         .then((response) => {
@@ -54,7 +54,7 @@ function HomePage() {
           console.error('Error sending API request:', error);
         });
 
-      fetch(createEndpoint, {
+     /* fetch(createEndpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ function HomePage() {
             user1: username,
             user2: '0',
             gameid: lobbyId,
-            timestamp: formattedDate,
+            timestamp: timestamp,
           }),
         })
           .then((response) => {
@@ -77,7 +77,7 @@ function HomePage() {
           .catch((error) => {
             console.error('Error sending API request:', error);
           });
-    } 
+    } */}
     else {
       alert('No name has been provided! Failed creating a lobby!');
     }
