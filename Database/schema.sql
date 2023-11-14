@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS BrainBox_questions (
 	
 );
 
-LOAD DATA INFILE '/home/questions.csv'
+LOAD DATA INFILE '/var/lib/mysql-files/questions.csv'
 INTO TABLE BrainBox_questions
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'

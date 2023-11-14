@@ -9,10 +9,10 @@ function LobbyPage() {
   const [lobbies, setLobbies] = useState({});
   const [loading, setLoading] = useState(true);
   const [isFull, setIsFull] = useState(false); // State to track if the lobby is full
+  const apiUrl = 'http://localhost:8080/api';
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiUrl = 'http://localhost:8080/api';
       const getEndpoint = `${apiUrl}/get`;
       try {
         const response = await fetch(`${getEndpoint}?action=databaseFetch&gameid=${lobbyId}`);
@@ -48,7 +48,32 @@ function LobbyPage() {
 
   const handleGameStartClick = () => {
     if (isFull) {
+      const createEndpoint = `${apiUrl}/create`;
       const gameURL = `/${lobbyId}/game`;
+
+      fetch(createEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          action: 'tableCreate',
+          user1: currentLobby.player1,
+          user2: currentLobby.player2,
+          gameid: lobbyId
+        }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log('table created successfully for lobby:', lobbyId);
+          } else {
+            console.error('Failed to create table for lobby:', response.status);
+          }
+        })
+        .catch((error) => {
+          console.error('Error sending API request:', error);
+        });
+
       navigate(gameURL);
     } else {
       alert('Lobby is not full, please wait for the second player.');

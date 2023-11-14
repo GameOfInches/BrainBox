@@ -10,6 +10,7 @@ function App() {
       <Routes>
       <Route path="/" element={<HomePage />}/>
       <Route path="/lobby/:lobbyId" element={<LobbyPage />}/>
+      <Route path="/:lobbyId/game" element={<GameStart />}/>
 	  </Routes>
     );
 }
