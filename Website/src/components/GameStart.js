@@ -5,7 +5,8 @@ import ResultsPage from './ResultsPage';
   
 function GameStart() {
   //placeholder for username
-  const username = "Player 1";
+  var userOne = localStorage['userOne'] || 'Player 1';
+  var userTwo = localStorage['userTwo'] || 'Player 2';
   const [isDisplayed, setIsDisplayed] = useState(false);
   //TO:DO import users and their scores from database
 
@@ -27,9 +28,9 @@ console.log("Round number: " + roundNumber)
             <div className="logo"></div>
           {!isDisplayed ? <div className="welcome-text">WELCOME TO MEMOR.IO! . . .</div> :
            {roundNumber} >= 4 ? <ResultsPage /> 
-           : roundNumber == 1 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
-           : roundNumber == 2 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
-           : roundNumber == 3 ? <QuestionPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
+           : roundNumber == 1 ? <QuestionPage username = {userOne} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
+           : roundNumber == 2 ? <QuestionPage username = {userTwo} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
+           : roundNumber == 3 ? <QuestionPage username = {userOne} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/>
            : <ResultsPage /> }
            </div>
       );

@@ -4,7 +4,7 @@ import '../App.css';
 
 const GuessPage = ({username}) => {
   //To-Do: pull from the database if the user has answered correctly or not
-
+    
 
     return (
       <div className="answer-page">
@@ -24,8 +24,8 @@ const GuessPage = ({username}) => {
               {option}
             </button>
           ))}
-        </div>
-    );
+        </div></div>
+    )
 
   }
 
