@@ -111,6 +111,36 @@ class GameController {
     }
 
 
+    @PostMapping("/score")
+    public ResponseEntity<String> createTable(@RequestParam("action") String action, @RequestParam("user") String user, @RequestParam("score") int score, @RequestParam("gameid") String gameid) {
+        if (gameData.getAction() != null && gameData.getAction().equals("scoreUpdate")) {
+        try {
+            String newTable = "BrainBox_" + gameid;
+
+            String selectSql = "SELECT creatorUserId FROM " + newTable;
+            String count = jdbcTemplate.queryForObject(selectSql);
+
+            if(count == user){
+            String sql = "UPDATE " + newTable + " SET pointsPlayer1 = " +  score + " WHERE creatorUserId = " + user;
+            jdbcTemplate.update(sql);
+            }
+            else{
+            String sql = "UPDATE " + newTable + " SET pointsPlayer2 = " +  score + " WHERE secondUserId = " + user;
+            jdbcTemplate.update(sql);
+            }
+            System.out.println("Score inserted successfully for user " + user);
+
+            return ResponseEntity.ok("Score updated successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: Failed to create table.");
+        }
+        } else{
+           return ResponseEntity.badRequest().body("Invalid 'action' parameter. It must be 'scoreUpdate'."); 
+        }
+    }
+
+
 
 }
 

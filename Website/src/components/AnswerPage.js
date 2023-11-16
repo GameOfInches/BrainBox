@@ -3,7 +3,7 @@ import Timer from './Timer';
 import '../App.css';
 import GameStart from './GameStart';
 
-const AnswerPage= ({username, roundNumber, setRoundNumber, toNewRound, setToNewRound}) => {
+const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, setToNewRound}) => {
   const [timeLeft, setTimeLeft] = useState(10);
   const [timeOut, setTimeOut] = useState(false);
   const [answerChosen, setAnswerChosen] = useState(false);
@@ -49,7 +49,8 @@ const AnswerPage= ({username, roundNumber, setRoundNumber, toNewRound, setToNewR
     }
     return () => {
       if (answerIsCorrect){
-        score += 100
+          score += 100
+          handleScoreUpdate(username, score);
       }
       setRoundNumber(roundNumber + 1)
       setToNewRound(true)
@@ -67,6 +68,35 @@ const AnswerPage= ({username, roundNumber, setRoundNumber, toNewRound, setToNewR
       console.log("Timer completed")
     };
   */
+
+    const handleScoreUpdate = (player, newScore) => {
+        const apiUrl = 'http://localhost:8080/api';
+        const insertEndpoint = `${apiUrl}/score`;
+
+        fetch(insertEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                action: 'scoreUpdate',
+                user: player,
+                score: newScore,
+                gameid: lobbyId
+            }),
+        })
+            .then((response) => {
+                if (response.ok) {
+                    console.log('score added successfully for user:', player);
+                } else {
+                    console.error('Failed to add score:', response.status);
+                }
+            })
+            .catch((error) => {
+                console.error('Error sending API request:', error);
+            });
+
+    }
 
 
     
