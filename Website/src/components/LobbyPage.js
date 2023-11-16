@@ -65,7 +65,8 @@ function LobbyPage() {
       })
         .then((response) => {
           if (response.ok) {
-            console.log('table created successfully for lobby:', lobbyId);
+              console.log('table created successfully for lobby:', lobbyId);
+              navigate(gameURL);
           } else {
             console.error('Failed to create table for lobby:', response.status);
           }
