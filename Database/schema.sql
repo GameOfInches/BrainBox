@@ -3,8 +3,7 @@ USE BrainBox;
 CREATE TABLE IF NOT EXISTS BrainBox_lobbies (
     lobbyId VARCHAR(255) PRIMARY KEY,
     creatorUserId VARCHAR(255) NOT NULL,
-    secondUserId VARCHAR(255),
-    creationTimestamp VARCHAR(255)
+    secondUserId VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS BrainBox_questions (
@@ -12,9 +11,11 @@ CREATE TABLE IF NOT EXISTS BrainBox_questions (
     questionName VARCHAR(255),
     questionAnswerA VARCHAR(255),
     questionAnswerB VARCHAR(255),
-	questionAnswerC VARCHAR(255),
-	questionAnswerD VARCHAR(255),
-	correctAnswer VARCHAR(1)
+    questionAnswerC VARCHAR(255),
+    questionAnswerD VARCHAR(255),
+    correctAnswer VARCHAR(1),
+    questionNumber TINYINT(20),
+    type VARCHAR(10)
 	
 );
 
