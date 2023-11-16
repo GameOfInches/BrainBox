@@ -5,7 +5,6 @@ public class GameData {
     private String user1;
     private String user2;
     private String gameid;
-    private String timestamp;
 
 
     public String getAction() {
@@ -40,11 +39,4 @@ public class GameData {
         this.gameid = gameid;
     }
 
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
 }
