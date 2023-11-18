@@ -7,8 +7,8 @@ public class UserLobbyRowMapper implements RowMapper<UserLobbyGameData> {
     @Override
     public UserLobbyGameData mapRow(ResultSet rs, int rowNum) throws SQLException {
         UserLobbyGameData lobbyData = new UserLobbyGameData();
-        lobbyData.setCreatorUserId(rs.getString("creatorUserId"));
-        lobbyData.setSecondUserId(rs.getString("secondUserId"));
+        lobbyData.setPlayer1(rs.getString("player1"));
+        lobbyData.setPlayer2(rs.getString("player2"));
         return lobbyData;
     }
 }

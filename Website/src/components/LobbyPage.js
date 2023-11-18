@@ -77,8 +77,8 @@ function LobbyPage() {
 
       navigate(gameURL);
       //saving the userIds
-      localStorage['userOne'] = player1; 
-      localStorage['userTwo'] = player2; 
+      localStorage['userOne'] = currentLobby.player1; 
+      localStorage['userTwo'] = currentLobby.player2; 
     } else {
       alert('Lobby is not full, please wait for the second player.');
     }

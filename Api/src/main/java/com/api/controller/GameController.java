@@ -122,16 +122,16 @@ public ResponseEntity<String> createTable(@RequestParam("action") String action,
         try {
             String newTable = "BrainBox_" + gameid;
 
-            String selectSql = "SELECT creatorUserId FROM " + newTable;
+            String selectSql = "SELECT player1, player2  FROM " + newTable + " LIMIT 1";
             List<UserLobbyGameData> lobbyList = jdbcTemplate.query(selectSql, new UserLobbyRowMapper());
 
-            if (!lobbyList.isEmpty() && lobbyList.get(0).getCreatorUserId().equals(user)) {
-                String updateSql = "UPDATE " + newTable + " SET pointsPlayer1 = " + score + " WHERE creatorUserId = '" + user + "'";
+            if (!lobbyList.isEmpty() && lobbyList.get(0).getPlayer1().equals(user)) {
+                String updateSql = "UPDATE " + newTable + " SET pointsPlayer1 = " + score + " WHERE player1 = '" + user + "'";
                 jdbcTemplate.update(updateSql);
                 System.out.println("Score inserted successfully for user " + user);
                 return ResponseEntity.ok("Score updated successfully.");
             } else {
-                String updateSql = "UPDATE " + newTable + " SET pointsPlayer2 = " + score + " WHERE secondUserId = '" + user + "'";
+                String updateSql = "UPDATE " + newTable + " SET pointsPlayer2 = " + score + " WHERE player2 = '" + user + "'";
                 jdbcTemplate.update(updateSql);
                 System.out.println("Score inserted successfully for user " + user);
                 return ResponseEntity.ok("Score updated successfully.");

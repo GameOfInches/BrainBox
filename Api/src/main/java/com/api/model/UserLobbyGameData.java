@@ -1,8 +1,8 @@
 package com.api.model;
 
 public class UserLobbyGameData {
-    private String creatorUserId;
-    private String secondUserId;
+    private String player1;
+    private String player2;
     private String action;
 
 
@@ -15,20 +15,20 @@ public class UserLobbyGameData {
     }
 
 
-    public String getCreatorUserId() {
-        return creatorUserId;
+    public String getPlayer1() {
+        return player1;
     }
 
-    public void setCreatorUserId(String creatorUserId) {
-        this.creatorUserId = creatorUserId;
+    public void setPlayer1(String player1) {
+        this.player1 = player1;
     }
 
-    public String getSecondUserId() {
-        return secondUserId;
+    public String getPlayer2() {
+        return player2;
     }
 
-    public void setSecondUserId(String secondUserId) {
-        this.secondUserId = secondUserId;
+    public void setPlayer2(String player2) {
+        this.player2 = player2;
     }
 }
 

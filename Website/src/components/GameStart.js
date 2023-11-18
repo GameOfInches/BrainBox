@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import QuestionPage from './QuestionPage';
 import ResultsPage from './ResultsPage';
   
@@ -23,6 +23,7 @@ function GameStart() {
     }, 3000);
   }, []);
 
+console.log ("Lobby: " + lobbyId)
 console.log("Round number: " + roundNumber)
     return (
       <div>
