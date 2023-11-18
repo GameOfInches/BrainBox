@@ -144,11 +144,13 @@ body {
       }
       
       .send-link {
-        font-size: 30px;
-        color: black;
-        position: absolute;
-        top: 0;
+          font-size: 35px;
+          color: black;
+          position: absolute;
+          top: 25px;
+          text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
       }
+
 
       .players-container {
         display: flex;
@@ -158,23 +160,23 @@ body {
     }
 
       .player1,
-.player2 {
-    background-color: rgba(145, 107, 1, 0.6);
-    color: #fff;
-    width: 400px;
-    height: 200px;
-    margin: 0px 80px;
-    border-radius: 50px;
-    display: inline-block;
-}
-      
-      
+      .player2 {
+          background-color: rgba(145, 107, 1, 0.6);
+          color: #fff;
+          width: 400px;
+          height: 200px;
+          margin: 0px 80px;
+          border-radius: 50px;
+          display: inline-block;
+          font-size: 20px;
+      }
+
       .start-game-button {
         background-color:  #f5cc5b;;
         color: #fff;
         padding: 30px 70px;
         font-size: 18px;
-        border-radius: 15px;
+        border-radius: 10px;
         border: none;
         cursor: pointer;
         margin-top: 100px;
@@ -186,3 +188,68 @@ body {
         background-color: #f7b705;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
       }
+
+    /*** QuestionPage ***/
+
+    .question-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 60vh;
+      font-family: Unkempt;
+      color: black;
+    }
+
+    .question-card-border {
+      border: 2px solid #f5cc5b;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+
+    .logo img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .title {
+      font-size: 24px;
+    }
+
+    .image-container img {
+      width: 200px;
+      height: 200px;
+    }
+
+/* AnswerPage.css */
+
+.answer-page {
+  display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+   text-align: center;
+}
+
+.answer-page-border {
+  border: 2px solid #f5cc5b;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.answer-page .logo img {
+  width: 100px;
+  height: 100px;
+}
+
+.answer-page .question h2 {
+  font-size: 24px;
+}
+
