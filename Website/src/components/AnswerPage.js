@@ -44,13 +44,14 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
     }
     if (answerChosen){
       console.log("answer chosen")
+      handleScoreUpdate(username, score)
       //TO-DO: logic to check if answer is correct
       setAnswerIsCorrect(true)
     }
     return () => {
       if (answerIsCorrect){
           score += 100
-          handleScoreUpdate(username, score);
+          handleScoreUpdate(username, score)
       }
       setRoundNumber(roundNumber + 1)
       setToNewRound(true)
@@ -71,20 +72,14 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
 
     const handleScoreUpdate = (player, newScore) => {
         const apiUrl = 'http://localhost:8080/api';
-        const insertEndpoint = `${apiUrl}/score`;
+        const insertEndpoint = `${apiUrl}/score?action=scoreUpdate&user=${encodeURIComponent(player)}&score=${encodeURIComponent(newScore)}&gameid=${encodeURIComponent(lobbyId)}`;
 
-        fetch(insertEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                action: 'scoreUpdate',
-                user: player,
-                score: newScore,
-                gameid: lobbyId
-            }),
-        })
+    fetch(insertEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
             .then((response) => {
                 if (response.ok) {
                     console.log('score added successfully for user:', player);
