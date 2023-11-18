@@ -17,6 +17,8 @@ import java.util.List;
 import com.api.model.GameData;
 import com.api.model.GetGameData;
 import com.api.model.GameDataRowMapper;
+import com.api.model.UserLobbyRowMapper;
+import com.api.model.UserLobbyGameData;
 
 
 @RestController
@@ -112,33 +114,37 @@ class GameController {
 
 
     @PostMapping("/score")
-    public ResponseEntity<String> createTable(@RequestParam("action") String action, @RequestParam("user") String user, @RequestParam("score") int score, @RequestParam("gameid") String gameid) {
-        if (gameData.getAction() != null && gameData.getAction().equals("scoreUpdate")) {
+public ResponseEntity<String> createTable(@RequestParam("action") String action, 
+                                          @RequestParam("user") String user, 
+                                          @RequestParam("score") int score, 
+                                          @RequestParam("gameid") String gameid) {
+    if (action != null && action.equals("scoreUpdate")) {
         try {
             String newTable = "BrainBox_" + gameid;
 
             String selectSql = "SELECT creatorUserId FROM " + newTable;
-            String count = jdbcTemplate.queryForObject(selectSql);
+            List<UserLobbyGameData> lobbyList = jdbcTemplate.query(selectSql, new UserLobbyRowMapper());
 
-            if(count == user){
-            String sql = "UPDATE " + newTable + " SET pointsPlayer1 = " +  score + " WHERE creatorUserId = " + user;
-            jdbcTemplate.update(sql);
+            if (!lobbyList.isEmpty() && lobbyList.get(0).getCreatorUserId().equals(user)) {
+                String updateSql = "UPDATE " + newTable + " SET pointsPlayer1 = " + score + " WHERE creatorUserId = '" + user + "'";
+                jdbcTemplate.update(updateSql);
+                System.out.println("Score inserted successfully for user " + user);
+                return ResponseEntity.ok("Score updated successfully.");
+            } else {
+                String updateSql = "UPDATE " + newTable + " SET pointsPlayer2 = " + score + " WHERE secondUserId = '" + user + "'";
+                jdbcTemplate.update(updateSql);
+                System.out.println("Score inserted successfully for user " + user);
+                return ResponseEntity.ok("Score updated successfully.");
             }
-            else{
-            String sql = "UPDATE " + newTable + " SET pointsPlayer2 = " +  score + " WHERE secondUserId = " + user;
-            jdbcTemplate.update(sql);
-            }
-            System.out.println("Score inserted successfully for user " + user);
-
-            return ResponseEntity.ok("Score updated successfully.");
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: Failed to create table.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: Failed to update score.");
         }
-        } else{
-           return ResponseEntity.badRequest().body("Invalid 'action' parameter. It must be 'scoreUpdate'."); 
-        }
+    } else {
+        return ResponseEntity.badRequest().body("Invalid 'action' parameter. It must be 'scoreUpdate'.");
     }
+}
+
 
 
 
