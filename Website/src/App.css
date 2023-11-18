@@ -18,50 +18,54 @@ body {
 }
 
 .memorio-heading{
-    margin-top: 300px;
-    width: 853px; 
-    height: 119px; 
-    position: relative;
-    color: black; 
-    font-size: 100px; 
-    font-family: Unkempt; 
-    font-weight: 400; 
-    word-wrap: break-word;
+  margin-top: 18.75rem; /* Converted from 300px */
+  width: 53.3125rem; /* Converted from 853px */
+  height: 7.4375rem; /* Converted from 119px */
+  position: relative;
+  color: black;
+  font-size: 6.25rem; /* Converted from 100px */
+  font-family: Unkempt;
+  font-weight: 400;
+  word-wrap: break-word;
 }
+
 
 
 .planet-img{
-    width: 73px; 
-    height: 73px; 
-    left: 470px; 
-    top: 100px; 
-    position: absolute;
-    top: 50%;
-    left: 54%;
-    transform: translate(-50%, -50%);
-    background-image: url('./pictures/planet.png');
-    background-size: cover;
+  width: 4.5625rem; /* Converted from 73px */
+  height: 4.5625rem; /* Converted from 73px */
+  left: 29.375rem; /* Converted from 470px */
+  top: 6.25rem; /* Converted from 100px */
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  background-image: url('./pictures/planet.png');
+  background-size: cover;
 }
 
 .play-button {
-    width: 341px;
-    height: 106px;
-    margin-top: 30px;
-    background-color: #f5cc5b;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    border: none;
-    font-size: 50px;
-    font-weight: 400;
-    line-height: 106px;
-    color: #f4f0ff;
-    text-align: center;
-    display: inline-block;
-    transition: background-color 0.3s;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  width: 21.3125rem; /* Converted from 341px */
+  height: 6.625rem; /* Converted from 106px */
+  margin-top: 1.875rem; /* Converted from 30px */
+  background-color: #f5cc5b;
+  color: #fff;
+  padding: 0.625rem 1.25rem; /* Converted from 10px 20px */
+  border-radius: 1.25rem; /* Converted from 20px */
+  cursor: pointer;
+  border: none;
+  font-size: 3.125rem; /* Converted from 50px */
+  font-weight: 400;
+  line-height: 6.625rem; /* Converted from 106px */
+  color: #f4f0ff;
+  text-align: center;
+  display: inline-block;
+  transition: background-color 0.3s;
+  box-shadow: 0px 3.125rem 6.25rem -1.25rem rgba(50, 50, 93, 0.25),
+              0px 1.875rem 3.75rem -1.875rem rgba(0, 0, 0, 0.3),
+              0px -0.125rem 0.375rem 0rem rgba(10, 37, 64, 0.35) inset;
 }
+
 
 .play-button:hover {
   background-color: #f7b705;
@@ -70,30 +74,30 @@ body {
 
 
   .rules {
-    margin-top: 60px;
-    margin-bottom: 50px;
-    max-width: 800px;
-    padding: 20px;
+    margin-top: 3.75rem; /* Converted from 60px */
+    margin-bottom: 3.125rem; /* Converted from 50px */
+    max-width: 50rem; /* Converted from 800px */
+    padding: 1.25rem; /* Converted from 20px */
     background-color: rgba(145, 107, 1, 0.6);
-    font-size: 30px;
+    font-size: 1.875rem; /* Converted from 30px */
     font-weight: 400;
-    line-height: 40px;
+    line-height: 2.5rem; /* Converted from 40px */
     color: black;
     text-align: middle;
-    border-radius: 20px;
+    border-radius: 1.25rem; /* Converted from 20px */
     transition: all 0.2s ease-in-out;
     overflow: hidden;
 }
 
 .rules ul {
   text-align: left; 
-  padding-left: 20px;
+  padding-left: 1.25rem;
 }
 
 .rules li {
-    font-size: 30px;
-    list-style-type: disc;
-    margin-bottom: 10px;
+  font-size: 1.875rem; /* Converted from 30px */
+  list-style-type: disc;
+  margin-bottom: 0.625rem; /* Converted from 10px */
 }
 
 .rules:hover { 
@@ -112,80 +116,82 @@ body {
       
       .logo {
         position: absolute;
-        top: 10px;
-        left: 20px;
-        width: 60px;
-        height: 60px;
+        top: 0.625rem;
+        left: 1.25rem;
+        width: 3.75rem;
+        height: 3.75rem;
         background-image: url('./pictures/planet.png');
         background-size: cover;
-      }
-      
-      .home-button {
-        position: absolute;
-        top: 30px;
-        right: 60px;
-        background-color: none;
-        color:#000000;
-        padding:0;
-        border: none;
-        cursor: pointer;
-        border-radius: 20px;
-        font-size: 24px;
-        width: 40px;
-        height: 40px;
-      }
-      
-      .lobby-heading {
-        font-size: 60px;
-        font-weight: bold;
-        position: absolute;
-        top:60px;
-        color: black;
-      }
-      
-      .send-link {
-        font-size: 30px;
-        color: black;
-        position: absolute;
-        top: 0;
-      }
-
-      .players-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 120px;
     }
-
-      .player1,
-.player2 {
-    background-color: rgba(145, 107, 1, 0.6);
-    color: #fff;
-    width: 400px;
-    height: 200px;
-    margin: 0px 80px;
-    border-radius: 50px;
-    display: inline-block;
-}
-      
-      
-      .start-game-button {
-        background-color:  #f5cc5b;;
-        color: #fff;
-        padding: 30px 70px;
-        font-size: 18px;
-        border-radius: 15px;
-        border: none;
-        cursor: pointer;
-        margin-top: 100px;
-        transition: background-color 0.3s;
-    box-shadow:  rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-      }
     
-      .start-game-button:hover {
-        background-color: #f7b705;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-      }
+      
+    .home-button {
+      position: absolute;
+      top: 1.875rem;
+      right: 3.75rem;
+      background-color: none;
+      color: #000000;
+      padding: 0;
+      border: none;
+      cursor: pointer;
+      border-radius: 1.25rem;
+      font-size: 1.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+  }
+  
+      
+  .lobby-heading {
+    font-size: 3.75rem;
+    font-weight: bold;
+    position: absolute;
+    top: 3.75rem;
+    color: black;
+}
+
+.send-link {
+  font-size: 1.875rem; /* Converted from 30px */
+  color: black;
+  position: absolute;
+  top: 0;
+}
+
+.players-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7.5rem; /* Converted from 120px */
+}
+
+.player1,
+.player2 {
+  background-color: rgba(145, 107, 1, 0.6);
+  color: #fff;
+  width: 25rem; /* Converted from 400px */
+  height: 12.5rem; /* Converted from 200px */
+  margin: 0 5rem; /* Converted from 0px 80px */
+  border-radius: 3.125rem; /* Converted from 50px */
+  display: inline-block;
+}
+
+.start-game-button {
+  background-color: #f5cc5b;
+  color: #fff;
+  padding: 1.875rem 4.375rem; /* Converted from 30px 70px */
+  font-size: 1.125rem; /* Converted from 18px */
+  border-radius: 0.9375rem; /* Converted from 15px */
+  border: none;
+  cursor: pointer;
+  margin-top: 6.25rem; /* Converted from 100px */
+  transition: background-color 0.3s;
+  box-shadow: rgba(50, 50, 93, 0.25) 0rem 3.125rem 6.25rem -1.25rem, rgba(0, 0, 0, 0.3) 0rem 1.875rem 3.75rem -1.875rem, rgba(10, 37, 64, 0.35) 0rem -0.125rem 0.375rem 0rem inset;
+}
+
+.start-game-button:hover {
+  background-color: #f7b705;
+  box-shadow: 0.625rem 3.125rem 6.25rem -1.25rem rgba(50, 50, 93, 0.25), 0 1.875rem 3.75rem -1.875rem rgba(0, 0, 0, 0.3), 0 -0.125rem 0.375rem 0 rgba(10, 37, 64, 0.35);
+}
+
 
       .player-id {
         color: #555;
@@ -268,3 +274,10 @@ body {
           box-shadow: 0.625rem 3.125rem 6.25rem -1.25rem rgba(50, 50, 93, 0.25), 0 1.875rem 3.75rem -1.875rem rgba(0, 0, 0, 0.3), 0 -0.125rem 0.375rem 0 rgba(10, 37, 64, 0.35);
       }
       
+
+      .title {
+        font-size: 3.75rem;
+        font-weight: bold;
+        margin-top: 3.75rem;
+        color: black;
+      }

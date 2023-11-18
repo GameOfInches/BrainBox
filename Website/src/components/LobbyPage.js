@@ -50,7 +50,6 @@ function LobbyPage() {
     if (isFull) {
       const createEndpoint = `${apiUrl}/create`;
       const gameURL = `/${lobbyId}/game`;
-
       fetch(createEndpoint, {
         method: 'POST',
         headers: {
@@ -77,8 +76,8 @@ function LobbyPage() {
 
       navigate(gameURL);
       //saving the userIds
-      localStorage['userOne'] = player1; 
-      localStorage['userTwo'] = player2; 
+      localStorage['userOne'] = currentLobby.player1; 
+      localStorage['userTwo'] = currentLobby.player2; 
     } else {
       alert('Lobby is not full, please wait for the second player.');
     }
@@ -107,6 +106,3 @@ function LobbyPage() {
 }
 
 export default LobbyPage;
-
-
-
