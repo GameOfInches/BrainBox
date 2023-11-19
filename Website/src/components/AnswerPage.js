@@ -9,6 +9,14 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
   const [answerChosen, setAnswerChosen] = useState(false);
   const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
 
+//TODO: import actual questions from database
+//TODO: import the number of the correct question from database
+//TODO: Make the front end logic for the answer choosing and point allocationg
+
+
+//TODO: If the answer is correct, add 100 points to the score in database
+
+
   //placeholder for score
   const score = 0
 

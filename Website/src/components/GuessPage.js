@@ -4,7 +4,7 @@ import '../App.css';
 
 const GuessPage = ({username}) => {
   //To-Do: pull from the database if the user has answered correctly or not
-    
+  //TODO: If the guess is correct, add 40 points to the score in database
 
     return (
       <div className="answer-page">

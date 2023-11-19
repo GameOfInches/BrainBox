@@ -6,6 +6,8 @@ import AnswerPage from './AnswerPage';
 const QuestionPage = ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, setToNewRound}) => {
     const [timeLeft, setTimeLeft] = useState(10);
     const [timeOut, setTimeOut] = useState(false);
+
+    //TODO: Fetch from the database the question and the image/video/audio and the type of the content
     
   
     useEffect(() => {

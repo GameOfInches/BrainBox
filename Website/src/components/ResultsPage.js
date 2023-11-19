@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+//TODO: fetch scores of both players in the results page
+//TODO: Logic to determine which player won
 
 const ResultsPage= ({}) => {
   return (

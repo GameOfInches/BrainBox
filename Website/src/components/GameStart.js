@@ -4,11 +4,9 @@ import QuestionPage from './QuestionPage';
 import ResultsPage from './ResultsPage';
   
 function GameStart() {
-  //placeholder for username
   var userOne = localStorage['userOne'] || 'Player 1';
   var userTwo = localStorage['userTwo'] || 'Player 2';
   const [isDisplayed, setIsDisplayed] = useState(false);
-  //TO:DO import users and their scores from database
 
   const [turnOfPlayer, setTurnOfPlayer] = useState(1);
   const [numberOfRounds, setNumberOfRounds] = useState(5);
