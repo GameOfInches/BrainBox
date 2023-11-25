@@ -95,8 +95,10 @@ function LobbyPage() {
       <div className="lobby-heading">LOBBY</div>
       <div className="send-link">Send this link to a friend to join this lobby!</div>
       <div className="players-container">
-        <div className="player1">PLAYER 1: {currentLobby.player1}</div>
-        <div className="player2">PLAYER 2: {currentLobby.player2}</div>
+        <div className="player1">PLAYER 1: </div>
+        <div className="player1"> {currentLobby.player1}</div>
+        <div className="player2">PLAYER 2: </div>
+        <div className="player2">{currentLobby.player2}</div>
       </div>
       <div className="start-game-button" onClick={handleGameStartClick}>
         START GAME

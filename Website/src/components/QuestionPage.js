@@ -65,13 +65,13 @@ const QuestionPage = ({lobbyId, username, roundNumber, setRoundNumber, toNewRoun
         <div className="title">Memorize the card, {username}...</div>
         <div 
         className="image-container">
-          <ReactPlayer
-      url="<https://youtu.be/vjhL4XS_6wY>"
-      width="640"
-      height="360"
-      playing={true}
-      controls
-    />
+        <ReactPlayer
+        url="<https://youtu.be/vjhL4XS_6wY>"
+        width="640"
+        height="360"
+        playing={true}
+        controls
+      />
           <img src="card.jpg" alt="Card" />
         </div></>}
         
