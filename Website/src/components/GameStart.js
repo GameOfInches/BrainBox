@@ -20,7 +20,7 @@ function GameStart() {
     }, 3000);
   }, []);
 
-console.log ("Lobby: " + lobbyId)
+//console.log ("Lobby: " + lobbyId)
 console.log("Round number: " + roundNumber)
     return (
       <div>

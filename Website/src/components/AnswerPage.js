@@ -12,8 +12,6 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
 //TODO: import actual questions from database
 //TODO: import the number of the correct question from database
 //TODO: Make the front end logic for the answer choosing and point allocationg
-
-
 //TODO: If the answer is correct, add 100 points to the score in database
 
 
@@ -45,6 +43,13 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
   }, [timeLeft]);
 
 
+  function wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+      end = new Date().getTime();
+   }
+ }
   
   useEffect(() => {
     if (timeOut){
@@ -63,6 +68,7 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
       }
       setRoundNumber(roundNumber + 1)
       setToNewRound(true)
+      wait(2000);
     };
   }, [timeOut, answerChosen]);
 
