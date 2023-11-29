@@ -90,6 +90,61 @@ class GameController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+    @GetMapping("/get")
+    public ResponseEntity<String> getAnsweredCorrectly(@RequestParam("action") String action, @RequestParam("gameid") String gameid, @RequestParam("question") int question) {
+        try {
+            System.out.println("Received GET request with action: " + action + " and gameid: " + gameid);
+
+            if ("getAnsweredCorrectly".equals(action)) {
+                String tableName = "BrainBox_" + gameid;
+                String sql = "SELECT answeredCorrectly FROM " + tableName + "  WHERE Id = ?";
+                String answeredCorrectly = jdbcTemplate.query(sql, new GameDataRowMapper(), question).toString();
+
+                if (answeredCorrectly != null && !answeredCorrectly.isEmpty()) {
+                    System.out.println("Query executed successfully. Data fetched: " + answeredCorrectly);
+                    return new ResponseEntity<>(answeredCorrectly, HttpStatus.OK);
+                } else {
+                    System.out.println("No data found for question: " + question);
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+                }
+            } else {
+                System.out.println("Invalid 'action' parameter. It must be 'getAnsweredCorrectly'.");
+                return ResponseEntity.badRequest().body(null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error occurred while processing the request.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<String> getCorrectAnswer(@RequestParam("action") String action, @RequestParam("gameid") String gameid, @RequestParam("question") int question) {
+        try {
+            System.out.println("Received GET request with action: " + action + " and gameid: " + gameid);
+
+            if ("getCorrectAnswer".equals(action)) {
+                String tableName = "BrainBox_" + gameid;
+                String sql = "SELECT correctAnswer FROM " + tableName + "  WHERE Id = ?";
+                String correctAnswer = jdbcTemplate.query(sql, new GameDataRowMapper(), question).toString();
+
+                if (correctAnswer != null && !correctAnswer.isEmpty()) {
+                    System.out.println("Query executed successfully. Data fetched: " + correctAnswer);
+                    return new ResponseEntity<>(correctAnswer, HttpStatus.OK);
+                } else {
+                    System.out.println("No data found for question: " + question);
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+                }
+            } else {
+                System.out.println("Invalid 'action' parameter. It must be 'getCorrectAnswer'.");
+                return ResponseEntity.badRequest().body(null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error occurred while processing the request.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
     @PostMapping("/create")
     public ResponseEntity<String> createTable(@RequestBody GameData gameData) {
         if (gameData.getAction() != null && gameData.getAction().equals("tableCreate")) {
@@ -114,7 +169,7 @@ class GameController {
 
 
     @PostMapping("/score")
-public ResponseEntity<String> createTable(@RequestParam("action") String action, 
+    public ResponseEntity<String> createTable(@RequestParam("action") String action,
                                           @RequestParam("user") String user, 
                                           @RequestParam("score") int score, 
                                           @RequestParam("gameid") String gameid) {
