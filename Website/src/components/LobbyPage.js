@@ -89,7 +89,7 @@ function LobbyPage() {
   }
 
   const currentLobby = lobbies[lobbyId] || { player1: '', player2: '' };
-
+//changes
 return (
   <div className="lobby-page">
     <div className="logo"></div>
