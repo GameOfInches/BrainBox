@@ -2,9 +2,53 @@ import React, { Component } from 'react';
 import Timer from './Timer';
 import '../App.css';
 
+const apiUrl = 'http://localhost:8080/api';
+
 const GuessPage = ({username}) => {
-  //To-Do: pull from the database if the user has answered correctly or not
-  //TODO: If the guess is correct, add 40 points to the score in database
+const checkIfCorrect = async (questionNumber, lobbyId) => {
+        const getEndpoint = `${apiUrl}/get`;
+          const response = await fetch(`${getEndpoint}?action=getAnsweredCorrectly&gameid=${lobbyId}&question=${questionNumber}`);
+          if (response.ok) {
+            try {
+              const data = await response.json();
+              if (data.length > 0) {
+                 if (data === 'True') {
+                             addPointsToGuesser(40);
+                         } else {
+                             alert('Incorrect. The other player did not answer their question correctly.');
+                         }
+
+              }
+            } catch (error) {
+              console.error(error);
+              alert('Invalid JSON response.');
+            }
+          } else {
+            alert('Could not check if answer was correct.');
+          }
+  }
+  const addPointsToGuesser = (points) => {
+          const apiUrl = 'http://localhost:8080/api';
+          const insertEndpoint = `${apiUrl}/score?action=scoreUpdate&user=${encodeURIComponent(username)}&score=${encodeURIComponent(points)}&gameid=${encodeURIComponent(lobbyId)}`;
+
+      fetch(insertEndpoint, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      })
+              .then((response) => {
+                  if (response.ok) {
+                      console.log('score added successfully for user:', player);
+                  } else {
+                      console.error('Failed to add score:', response.status);
+                  }
+              })
+              .catch((error) => {
+                  console.error('Error sending API request:', error);
+              });
+
+      }
 
     return (
       <div className="answer-page">
