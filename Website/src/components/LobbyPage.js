@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 
+
 function LobbyPage() {
   const { lobbyId } = useParams();
   const navigate = useNavigate();
@@ -76,8 +77,8 @@ function LobbyPage() {
 
       navigate(gameURL);
       //saving the userIds
-      localStorage['userOne'] = currentLobby.player1; 
-      localStorage['userTwo'] = currentLobby.player2; 
+      localStorage['userOne'] = currentLobby.player1;
+      localStorage['userTwo'] = currentLobby.player2;
     } else {
       alert('Lobby is not full, please wait for the second player.');
     }
@@ -89,22 +90,26 @@ function LobbyPage() {
 
   const currentLobby = lobbies[lobbyId] || { player1: '', player2: '' };
 
-  return (
-    <div className="lobby-page">
-      <div className="logo"></div>
-      <div className="lobby-heading">LOBBY</div>
-      <div className="send-link">Send this link to a friend to join this lobby!</div>
-      <div className="players-container">
-        <div className="player1">PLAYER 1: </div>
-        <div className="player1"> {currentLobby.player1}</div>
-        <div className="player2">PLAYER 2: </div>
-        <div className="player2">{currentLobby.player2}</div>
+return (
+  <div className="lobby-page">
+    <div className="logo"></div>
+    <div className="lobby-heading">LOBBY</div>
+    <div className="send-link">Send this link to a friend to join this lobby!</div>
+    <div className="players-container">
+      <div className="player1">
+        PLAYER 1:
+        <div className="player-name">{currentLobby.player1}</div>
       </div>
-      <div className="start-game-button" onClick={handleGameStartClick}>
-        START GAME
+      <div className="player2">
+        PLAYER 2:
+        <div className="player-name">{currentLobby.player2 === '0' ? '0' : currentLobby.player2}</div>
       </div>
     </div>
-  );
-}
+    <div className="start-game-button" onClick={handleGameStartClick}>
+      START GAME
+    </div>
+  </div>
+);
+
 
 export default LobbyPage;
