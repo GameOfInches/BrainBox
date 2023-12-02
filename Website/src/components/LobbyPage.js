@@ -109,7 +109,7 @@ return (
       START GAME
     </div>
   </div>
-);
+);}
 
 
 export default LobbyPage;

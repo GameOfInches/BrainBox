@@ -15,7 +15,7 @@ const QuestionPage = ({lobbyId, username, roundNumber, setRoundNumber, toNewRoun
 
     //TODO: Fetch from the database the question and the image/video/audio and the type of the content
     
-  
+
     useEffect(() => {
       // Start the timer countdown
       const countdownInterval = setInterval(() => {
@@ -50,6 +50,8 @@ const QuestionPage = ({lobbyId, username, roundNumber, setRoundNumber, toNewRoun
     //for video playing
     /* */
   
+
+    //compare local username to the the one passed in argument?
     return (
       
       <div className="question-card">

@@ -78,11 +78,6 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
       console.log("Answer clicked")
       setAnswerChosen(true)
     };
-    /*
-    handleTimerCompletion = () => {
-      console.log("Timer completed")
-    };
-  */
 
     const handleScoreUpdate = (player, newScore) => {
         const apiUrl = 'http://localhost:8080/api';
