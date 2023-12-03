@@ -12,6 +12,12 @@ public class QuestionData {
 
     private String questionAnswerD;
 
+    private String questionNumber;
+
+    private String questionType;
+
+    private int questionDuration;
+
 
     public String getAction() {
         return action;
@@ -67,5 +73,28 @@ public class QuestionData {
 
     public void setQuestionAnswerD(String questionAnswerD) {
         this.questionAnswerD = questionAnswerD;
+    }
+
+    public String getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(String questionNumber) {
+        this.questionNumber = questionNumber;
+    }
+    public String getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(String questionType) {
+        this.questionType = questionType;
+    }
+
+    public int getQuestionDuration() {
+        return questionDuration;
+    }
+
+    public void setQuestionDuration(int questionDuration) {
+        this.questionDuration = questionDuration;
     }
 }

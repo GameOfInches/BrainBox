@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS BrainBox_questions (
     questionAnswerD VARCHAR(255),
     correctAnswer VARCHAR(1),
     questionNumber TINYINT(20),
-    type VARCHAR(10)
+    type VARCHAR(10),
+	duration TINYINT(100)
 	
 );
 

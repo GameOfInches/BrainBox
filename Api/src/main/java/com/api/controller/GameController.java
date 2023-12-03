@@ -149,7 +149,7 @@ class GameController {
 
             if ("getQuestion".equals(action)) {
                 String sqlTable = "BrainBox_" + gameid;
-                String sql = "SELECT Id, questionTitle, questionAnswerA, questionAnswerB, questionAnswerC, questionAnswerD FROM " + sqlTable + " ORDER BY RAND() LIMIT 1";
+                String sql = "SELECT Id, questionTitle, questionAnswerA, questionAnswerB, questionAnswerC, questionAnswerD, questionNumber, type, duration FROM " + sqlTable + " ORDER BY RAND() LIMIT 1";
                 List<QuestionData> questionDataList = jdbcTemplate.query(sql, new QuestionDataRowMapper());
 
                 if (questionDataList != null && !questionDataList.isEmpty()) {
@@ -173,11 +173,11 @@ class GameController {
         if (gameData.getAction() != null && gameData.getAction().equals("tableCreate")) {
         try {
             String newTable = "BrainBox_" + gameData.getGameid();
-            String sql = "CREATE TABLE " + newTable + " (Id TINYINT(20) PRIMARY KEY AUTO_INCREMENT, questionName VARCHAR(255), questionAnswerA VARCHAR(255), questionAnswerB VARCHAR(255), questionAnswerC VARCHAR(255), questionAnswerD VARCHAR(255), correctAnswer VARCHAR(1), questionNumber TINYINT(20), type VARCHAR(10), player1 VARCHAR(255), player2 VARCHAR(255), pointsPlayer1 INT, pointsPlayer2 INT, answeredCorrectly VARCHAR(10))";
+            String sql = "CREATE TABLE " + newTable + " (Id TINYINT(20) PRIMARY KEY AUTO_INCREMENT, questionName VARCHAR(255), questionAnswerA VARCHAR(255), questionAnswerB VARCHAR(255), questionAnswerC VARCHAR(255), questionAnswerD VARCHAR(255), correctAnswer VARCHAR(1), questionNumber TINYINT(20), type VARCHAR(10), duration TINYINT(100), player1 VARCHAR(255), player2 VARCHAR(255), pointsPlayer1 INT, pointsPlayer2 INT, answeredCorrectly VARCHAR(10))";
             System.out.println("Table created successfully for lobby " + gameData.getGameid());
             jdbcTemplate.update(sql);
 
-            sql = "INSERT INTO " + newTable + " (Id, questionName, questionAnswerA, questionAnswerB, questionAnswerC, questionAnswerD, correctAnswer, questionNumber, type, player1, player2, pointsPlayer1, pointsPlayer2, answeredCorrectly) SELECT DISTINCT NULL as Id, questionName, questionAnswerA, questionAnswerB, questionAnswerC, questionAnswerD, correctAnswer, questionNumber, type, ? as player1, ? as player2, 0 as pointsPlayer1, 0 as pointsPlayer2, '' as answeredCorrectly FROM BrainBox_questions ORDER BY RAND() LIMIT 10";
+            sql = "INSERT INTO " + newTable + " (Id, questionName, questionAnswerA, questionAnswerB, questionAnswerC, questionAnswerD, correctAnswer, questionNumber, type, duration, player1, player2, pointsPlayer1, pointsPlayer2, answeredCorrectly) SELECT DISTINCT NULL as Id, questionName, questionAnswerA, questionAnswerB, questionAnswerC, questionAnswerD, correctAnswer, questionNumber, type, duration, ? as player1, ? as player2, 0 as pointsPlayer1, 0 as pointsPlayer2, '' as answeredCorrectly FROM BrainBox_questions ORDER BY RAND() LIMIT 10";
             jdbcTemplate.update(sql, gameData.getUser1(), gameData.getUser2());
             System.out.println("Questions inserted successfully for lobby " + gameData.getGameid());
             return ResponseEntity.ok("Table created successfully.");
