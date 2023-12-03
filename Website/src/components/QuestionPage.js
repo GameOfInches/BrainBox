@@ -6,16 +6,21 @@ import ReactPlayer from 'react-player';
 import useSound from 'use-sound';
 import Audio1 from '../Assets/Audio_1.mp3';
 const QuestionPage = ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, setToNewRound}) => {
-    const [timeLeft, setTimeLeft] = useState(10);
+    
     const [timeOut, setTimeOut] = useState(false);
     const [play, { stop }] = useSound(Audio1);
+
     //placeholder for questiontype
     const [questionType, setQuestionType] = useState("audio");
 
 
     //TODO: Fetch from the database the question and the image/video/audio and the type of the content
     
+    //TODO: Fetch from the database the duration of the content. 
+    const [questionDuration, setQuestionDuration] = useState (10)
+    const [timeLeft, setTimeLeft] = useState(questionDuration);
 
+    
     useEffect(() => {
       // Start the timer countdown
       const countdownInterval = setInterval(() => {
@@ -57,7 +62,7 @@ const QuestionPage = ({lobbyId, username, roundNumber, setRoundNumber, toNewRoun
       <div className="question-card">
         <div>Round {roundNumber}</div>
         {timeOut ? <AnswerPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/> : <><div className="">
-            <Timer initialTime={10 * 1000} isPlaying={true} />
+            <Timer initialTime={questionDuration * 1000} isPlaying={true} />
           </div>
         <div className="logo">
           <img src="planet.png" alt="Logo" />

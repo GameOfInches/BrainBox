@@ -19,10 +19,13 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
   const score = 0
 
   //placeholder for question
+  const questionText = " "
 
   //placeholder for correct answer
   //placeholder for answer options
-  const options = ["Yes", "No"]
+  const options = [" "]
+
+  //KRASI: need logic for checkIfCorrect
 
   useEffect(() => {
     // Start the timer countdown
@@ -118,7 +121,7 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
             <img src="planet.png" alt="Logo" />
           </div>
           <div className="question">
-            <h2>{"What?"}</h2>
+            <h2>{questionText}</h2>
           </div>
           <div className="options">
             {options.map((option, index) => (

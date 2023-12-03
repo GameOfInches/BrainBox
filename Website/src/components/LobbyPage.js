@@ -74,11 +74,10 @@ function LobbyPage() {
         .catch((error) => {
           console.error('Error sending API request:', error);
         });
-
-      navigate(gameURL);
       //saving the userIds
       localStorage['userOne'] = currentLobby.player1;
       localStorage['userTwo'] = currentLobby.player2;
+      localStorage['lobbyId'] = lobbyId;
     } else {
       alert('Lobby is not full, please wait for the second player.');
     }
