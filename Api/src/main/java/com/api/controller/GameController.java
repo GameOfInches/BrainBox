@@ -86,7 +86,7 @@ class GameController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
-    @GetMapping("/get")
+    @GetMapping("/getAnsweredCorrectly")
     public ResponseEntity<String> getAnsweredCorrectly(@RequestParam("action") String action, @RequestParam("gameid") String gameid, @RequestParam("question") int question) {
         try {
             System.out.println("Received GET request with action: " + action + " and gameid: " + gameid);
@@ -114,7 +114,7 @@ class GameController {
         }
     }
 
-    @GetMapping("/get")
+    @GetMapping("/getCorrectAnswer")
     public ResponseEntity<String> getCorrectAnswer(@RequestParam("action") String action, @RequestParam("gameid") String gameid, @RequestParam("question") int question) {
         try {
             System.out.println("Received GET request with action: " + action + " and gameid: " + gameid);
@@ -142,7 +142,7 @@ class GameController {
         }
     }
 
-    @GetMapping("/get")
+    @GetMapping("/getQuestion")
     public ResponseEntity<List<QuestionData>> getQuestion(@RequestParam("action") String action, @RequestParam("gameid") String gameid) {
         try {
             System.out.println("Received GET request with action: " + action + " and gameid: " + gameid);
