@@ -65,10 +65,11 @@ function HomePage() {
 
   return (
     <div className="home-page">
-      <div className="memorio-heading">
-        MEM . <div className="logo" alt="Planet" />
-        R.io
-      </div>
+     <div className="memorio-heading">
+             MEM .
+             R.io
+           </div>
+             <div className="planet-img" alt="Planet" />  /* memorio head planet logo*/
       {showUsernameInput ? (
         <div className="username-input">
           <h2>Enter Your Username</h2>
