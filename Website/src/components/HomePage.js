@@ -66,10 +66,9 @@ function HomePage() {
   return (
     <div className="home-page">
      <div className="memorio-heading">
-             MEM .
+             MEM <div className="planet-img" alt="Planet" />
              R.io
            </div>
-             <div className="planet-img" alt="Planet" />  /* memorio head planet logo*/
       {showUsernameInput ? (
         <div className="username-input">
           <h2>Enter Your Username</h2>
