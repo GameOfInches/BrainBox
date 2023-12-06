@@ -5,6 +5,7 @@ import AnswerPage from './AnswerPage';
 import ReactPlayer from 'react-player';
 import useSound from 'use-sound';
 import Audio5 from '../Assets/Audio_5.mp3';
+import Card from '../Assets/Img_11.png'; // with import
 const QuestionPage = ({score, setScore, lobbyId, questionType, questionDuration, username, roundNumber, setRoundNumber, toNewRound, setToNewRound}) => {
     
 const [timeOut, setTimeOut] = useState(false);
@@ -74,10 +75,10 @@ const [play, { stop }] = useSound(Audio5);
           </div>
         ) : questionType === "image" ? (
           <div className="image-container">
-            <img src="../Assets/Img_11.png" alt="Card" />
+            <img src={Card} />
           </div>
         ) : (
-          <div className="video-container">
+          <div className="">
             <ReactPlayer
               url="https://youtube.com/shorts/SQDyTIuepMM"
               width="360"

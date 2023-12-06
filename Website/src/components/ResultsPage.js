@@ -14,14 +14,6 @@ const ResultsPage= ({userOne, userTwo, userOneScore, userTwoScore}) => {
   const [fetchingComplete, setFetchingComplete] = useState(false)
   
   useEffect(() => {
-    if (!fetchingComplete){
-      setFetchingComplete(true)
-    }
-  return () => {
-  };
-}, 1000);
-
-  useEffect(() => {
       if (userOneScore > userTwoScore){
         setWinningPlayer(userOne)
         setWinningPlayerScore(userOneScore)
@@ -36,7 +28,7 @@ const ResultsPage= ({userOne, userTwo, userOneScore, userTwoScore}) => {
       }
     return () => {
     };
-  }, [fetchingComplete]);
+  }, []);
   
   
   return (
