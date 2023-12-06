@@ -25,12 +25,12 @@ function GameStart() {
 
 
     //placeholders
-    const firstQuestionType = useState("video");
-    const secondQuestionType = useState("audio");
-    const thirdQuestionType = useState("card");
-    const firstQuestionDuration = useState(49);
-    const secondQuestionDuration = useState(34);
-    const thirdQuestionDuration = useState(10);
+    const firstQuestionType = "video"
+    const secondQuestionType = "audio";
+    const thirdQuestionType = "image";
+    const firstQuestionDuration = 49;
+    const secondQuestionDuration = 34;
+    const thirdQuestionDuration = 10;
     
 console.log("Round number: " + roundNumber)
     return (

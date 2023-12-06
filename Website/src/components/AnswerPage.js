@@ -7,7 +7,7 @@ const AnswerPage= ({score, setScore, lobbyId, questionType, username, roundNumbe
   const [timeLeft, setTimeLeft] = useState(10);
   const [timeOut, setTimeOut] = useState(false);
   const [answerChosen, setAnswerChosen] = useState(5);
-  const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
+  const [answerIsCorrect, setAnswerIsCorrect] = useState(0);
   const apiUrl = 'http://localhost:8080/api';
 
 //placeholders
@@ -15,8 +15,6 @@ const [fetchingComplete, setFetchingComplete] = useState(false)
 const [questionText, setQuestionText] = useState("")
 const [options, setOptions] = useState([])
 const [correctAnswer, setCorrectAnswer] = useState(0)
-
-setFetchingComplete(true)
 
 useEffect(() => {
   if (questionType == "image"){
@@ -45,8 +43,12 @@ useEffect(() => {
     const countdownInterval = setInterval(() => {
       if (timeLeft > 0) {
         setTimeLeft(timeLeft - 1);
+        if (!fetchingComplete){
+          setFetchingComplete(true)
+        }
       } else {
         clearInterval(countdownInterval);
+        console.log("timeout")
         setTimeOut(true);
       }
     }, 1000);
@@ -71,13 +73,17 @@ useEffect(() => {
     if (timeOut){
       console.log("time out")
     }
-    if (answerChosen){
+    if (answerChosen != 5){
       console.log("answer chosen")
+      console.log("correct answer" + correctAnswer)
+      console.log("answer chosen" + answerChosen)
       if (answerChosen == correctAnswer){
-        setAnswerIsCorrect(true)
+        console.log("correct answer")
+        setAnswerIsCorrect(2)
       }
       else{
-        setAnswerIsCorrect(false)
+        console.log("incorrect answer")
+        setAnswerIsCorrect(1)
       }
     }
     return () => {
@@ -95,7 +101,8 @@ useEffect(() => {
   
     const handleAnswerClick = (index) => {
       // Implement your logic to handle the selected answer.
-      console.log("Answer clicked")
+      console.log("Answer clicked" + index)
+      console.log(index)
       setAnswerChosen(index)
     };
 
@@ -203,12 +210,12 @@ useEffect(() => {
       return (
         <div className="answer-page">
           <div className="">
-            <Timer initialTime={10 * 1000} isPlaying={!answerChosen}/> 
+            <Timer initialTime={10 * 1000} isPlaying={answerChosen == 5}/> 
           </div>
           <div>Score is: {score}</div>
           {timeOut ? <div> Time's up! </div> 
-                 : answerIsCorrect ? <div>Answer is correct!</div>
-                      : !answerIsCorrect && answerChosen ? <div>Answer is incorrect!</div>
+                 : answerIsCorrect == 2 && answerChosen != 5 ? <div>Answer is correct!</div>
+                      : answerIsCorrect == 1 && answerChosen != 5 ? <div>Answer is incorrect!</div>
                           : <></>}
           <div className="logo">
             <img src="planet.png" alt="Logo" />
@@ -220,7 +227,7 @@ useEffect(() => {
             {options.map((option, index) => (
               <button
                 key={index}
-                onClick={() => handleAnswerClick(index)}
+                onClick={() => handleAnswerClick(index )}
               >
                 {option}
               </button>

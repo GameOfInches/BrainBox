@@ -7,26 +7,34 @@ import useSound from 'use-sound';
 import Audio5 from '../Assets/Audio_5.mp3';
 const QuestionPage = ({score, setScore, lobbyId, questionType, questionDuration, username, roundNumber, setRoundNumber, toNewRound, setToNewRound}) => {
     
-    const [timeOut, setTimeOut] = useState(false);
-    const [play, { stop }] = useSound(Audio5);
+const [timeOut, setTimeOut] = useState(false);
+const [play, { stop }] = useSound(Audio5);
 
     //TODO: Fetch from the database the question and the image/video/audio and the type of the content
 
     const [timeLeft, setTimeLeft] = useState(questionDuration);
+    const [playing, setPlaying] = useState(false);
 
     
     useEffect(() => {
       // Start the timer countdown
       const countdownInterval = setInterval(() => {
         //this has to be changed when we get time per question from the database
-        if (timeLeft == questionDuration - 1) {
-          play();
-        }
         if (timeLeft > 0) {
+          if (questionType == "audio" ){
+            if (!playing){
+              console.log("playing")
+              setPlaying(true)
+              play()
+            }
+          }
           setTimeLeft(timeLeft - 1);
         } else {
           clearInterval(countdownInterval);
-          stop();
+          if (questionType == "audio" ){
+            stop();
+            }
+          
           setTimeOut(true);
         }
       }, 1000);
@@ -63,7 +71,6 @@ const QuestionPage = ({score, setScore, lobbyId, questionType, questionDuration,
         <div className="title">Memorize the contents, {username}...</div>
         {questionType === "audio" ? (
           <div className="audio-container">
-             <img src="volume.png" alt="Sound icon" />
           </div>
         ) : questionType === "image" ? (
           <div className="image-container">

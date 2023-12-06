@@ -13,21 +13,27 @@ const ResultsPage= ({userOne, userTwo, userOneScore, userTwoScore}) => {
   const [losingPlayerScore, setLosingPlayerScore] = useState(0)
   const [fetchingComplete, setFetchingComplete] = useState(false)
   
-  setFetchingComplete(true)
+  useEffect(() => {
+    if (!fetchingComplete){
+      setFetchingComplete(true)
+    }
+  return () => {
+  };
+}, 1000);
 
   useEffect(() => {
-    if (userOneScore > userTwoScore){
-      setWinningPlayer(userOne)
-      setWinningPlayerScore(userOneScore)
-      setLosingPlayer(userTwo)
-      setLosingPlayerScore(userTwoScore)
-    }
-    else{
-      setWinningPlayer(userTwo)
-      setWinningPlayerScore(userTwoScore)
-      setLosingPlayer(userOne)
-      setLosingPlayerScore(userOneScore)
-    }
+      if (userOneScore > userTwoScore){
+        setWinningPlayer(userOne)
+        setWinningPlayerScore(userOneScore)
+        setLosingPlayer(userTwo)
+        setLosingPlayerScore(userTwoScore)
+      }
+      else{
+        setWinningPlayer(userTwo)
+        setWinningPlayerScore(userTwoScore)
+        setLosingPlayer(userOne)
+        setLosingPlayerScore(userOneScore)
+      }
     return () => {
     };
   }, [fetchingComplete]);
