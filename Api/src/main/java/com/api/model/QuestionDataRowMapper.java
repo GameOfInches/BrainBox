@@ -14,6 +14,7 @@ public class QuestionDataRowMapper implements RowMapper<QuestionData> {
         questionData.setQuestionAnswerB(rs.getString("questionAnswerB"));
         questionData.setQuestionAnswerC(rs.getString("questionAnswerC"));
         questionData.setQuestionAnswerD(rs.getString("questionAnswerD"));
+        questionData.setCorrectAnswer(rs.getString("correctAnswer"));
         questionData.setQuestionNumber(rs.getString("questionNumber"));
         questionData.setQuestionType(rs.getString("type"));
         questionData.setQuestionDuration(rs.getInt("duration"));

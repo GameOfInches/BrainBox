@@ -12,6 +12,8 @@ public class QuestionData {
 
     private String questionAnswerD;
 
+    private String correctAnswer;
+
     private String questionNumber;
 
     private String questionType;
@@ -74,6 +76,15 @@ public class QuestionData {
     public void setQuestionAnswerD(String questionAnswerD) {
         this.questionAnswerD = questionAnswerD;
     }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
 
     public String getQuestionNumber() {
         return questionNumber;

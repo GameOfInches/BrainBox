@@ -8,11 +8,8 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
   const [timeOut, setTimeOut] = useState(false);
   const [answerChosen, setAnswerChosen] = useState(false);
   const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
+  const apiUrl = 'http://localhost:8080/api';
 
-//TODO: import actual questions from database
-//TODO: import the number of the correct question from database
-//TODO: Make the front end logic for the answer choosing and point allocationg
-//TODO: If the answer is correct, add 100 points to the score in database
 
 
   //placeholder for score
@@ -25,7 +22,6 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
   //placeholder for answer options
   const options = [" "]
 
-  //KRASI: need logic for checkIfCorrect
 
   useEffect(() => {
     // Start the timer countdown
@@ -83,8 +79,7 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
     };
 
     const handleScoreUpdate = (player, newScore) => {
-        const apiUrl = 'http://localhost:8080/api';
-        const insertEndpoint = `${apiUrl}/score?action=scoreUpdate&user=${encodeURIComponent(player)}&score=${encodeURIComponent(newScore)}&gameid=${encodeURIComponent(lobbyId)}`;
+        const insertEndpoint = `${apiUrl}/score?action=scoreUpdate&user=${player}&score=${newScore}&gameid=${lobbyId}`;
 
     fetch(insertEndpoint, {
         method: 'POST',
@@ -104,6 +99,79 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
             });
 
     }
+
+    const fetchQuestion = () => {
+            const getEndpoint = `${apiUrl}/get?action=getQuestion&gameid=${lobbyId}`;
+
+        try {
+                const response = await fetch(getEndpoint);
+                if (response.ok) {
+                  try {
+                    const data = await response.json();
+                    if (data.length > 0) {
+                      const questionId = data[0];
+                      const questionTitle = data[1];
+                      const questionAnswerA = data[2];
+                      const questionAnswerB = data[3];
+                      const questionAnswerC = data[4];
+                      const questionAnswerD = data[5];
+                      const questionCorrectAnswer = data[6];
+                      const questionNumber = data[7];
+                      const questionType = data[8];
+                      const questionDuration = data[9];
+
+                    }
+                  } catch (error) {
+                    console.error(error);
+                    alert('Invalid JSON response.');
+                  }
+                } else {
+                  alert('Invalid or empty response.');
+                }
+        }
+    }
+
+    const checkIfCorrect = async (question) => {
+      const getEndpoint = `${apiUrl}/getCorrectAnswer?action=getCorrectAnswer&gameid=${lobbyId}&question=${question}`;
+
+      try {
+        const response = await fetch(getEndpoint);
+
+        if (response.ok) {
+          try {
+            const data = await response.text();
+
+            // Check if data is not undefined
+            if (typeof data !== 'undefined' && data !== null) {
+              const correctAnswer = data;
+
+              if (correctAnswer === answerChosen) {
+                handleScoreUpdate(username, 100);
+              } else {
+                // Handle incorrect answer case
+                console.log('Incorrect answer');
+              }
+            } else {
+              // Handle case where data is undefined or null
+              console.log('Invalid data response.');
+            }
+          } catch (error) {
+            // Handle errors in parsing the response text
+            console.error(error);
+            alert('Invalid response text.');
+          }
+        } else {
+          // Handle non-OK response status
+          console.log('Invalid or empty response.');
+          alert('Invalid or empty response.');
+        }
+      } catch (error) {
+        // Handle fetch error (e.g., network issues)
+        console.error(error);
+        alert('Error fetching data.');
+      }
+    };
+
 
 
     

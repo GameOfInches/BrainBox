@@ -149,7 +149,7 @@ class GameController {
 
             if ("getQuestion".equals(action)) {
                 String sqlTable = "BrainBox_" + gameid;
-                String sql = "SELECT Id, questionTitle, questionAnswerA, questionAnswerB, questionAnswerC, questionAnswerD, questionNumber, type, duration FROM " + sqlTable + " ORDER BY RAND() LIMIT 1";
+                String sql = "SELECT Id, questionTitle, questionAnswerA, questionAnswerB, questionAnswerC, questionAnswerD, correctAnswer, questionNumber, type, duration FROM " + sqlTable + " ORDER BY RAND() LIMIT 1";
                 List<QuestionData> questionDataList = jdbcTemplate.query(sql, new QuestionDataRowMapper());
 
                 if (questionDataList != null && !questionDataList.isEmpty()) {
@@ -222,9 +222,6 @@ class GameController {
         return ResponseEntity.badRequest().body("Invalid 'action' parameter. It must be 'scoreUpdate'.");
     }
 }
-
-
-
 
 }
 
