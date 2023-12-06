@@ -228,6 +228,12 @@ body {
   box-shadow: rgba(50, 50, 93, 0.25) 0rem 3.125rem 6.25rem -1.25rem, rgba(0, 0, 0, 0.3) 0rem 1.875rem 3.75rem -1.875rem, rgba(10, 37, 64, 0.35) 0rem -0.125rem 0.375rem 0rem inset;
 }
 
+.video-container {
+  height: 100%;
+  width: 100%;
+  min-height: 225px;
+ }
+
 .start-game-button:hover {
   background-color: #f7b705;
   box-shadow: 0.625rem 3.125rem 6.25rem -1.25rem rgba(50, 50, 93, 0.25), 0 1.875rem 3.75rem -1.875rem rgba(0, 0, 0, 0.3), 0 -0.125rem 0.375rem 0 rgba(10, 37, 64, 0.35);

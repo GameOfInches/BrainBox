@@ -50,7 +50,7 @@ const [play, { stop }] = useSound(Audio5);
       // Start the timer countdown
       return () => {
         setTimeOut(false)
-        setTimeLeft(10)
+        setTimeLeft(questionDuration)
       };
     }, [roundNumber]);
 
@@ -78,11 +78,11 @@ const [play, { stop }] = useSound(Audio5);
             <img src={Card} class="card" />
           </div>
         ) : (
-          <div className="">
-            <ReactPlayer
-              url="https://youtube.com/shorts/SQDyTIuepMM"
-              width="360"
-              height="720"
+          <div className="video-container">
+             <ReactPlayer
+            width="100%"
+            height="100%"
+            url="https://youtube.com/shorts/SQDyTIuepMM"
               playing={true}
               controls={false}
             />
