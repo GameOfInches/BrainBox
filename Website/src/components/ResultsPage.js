@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Link } from "react";
 
 //TODO: fetch scores of both players in the results page
 //TODO: Logic to determine which player won
@@ -6,34 +6,29 @@ import { useState, useEffect } from "react";
 
 
 
-const ResultsPage= ({}) => {
+const ResultsPage= ({userOne, userTwo, userOneScore, userTwoScore}) => {
   const [winningPlayer, setWinningPlayer] = useState('')
   const [winningPlayerScore, setWinningPlayerScore] = useState('')
   const [losingPlayer, setLosingPlayer] = useState(0)
   const [losingPlayerScore, setLosingPlayerScore] = useState(0)
   const [fetchingComplete, setFetchingComplete] = useState(false)
   
+  setFetchingComplete(true)
+
   useEffect(() => {
-    if (username1.score > username2.score){
-      setWinningPlayer(username1)
-      setWinningPlayerScore(username1.score)
-      setLosingPlayer(username2)
-      setLosingPlayerScore(username2.score)
+    if (userOneScore > userTwoScore){
+      setWinningPlayer(userOne)
+      setWinningPlayerScore(userOneScore)
+      setLosingPlayer(userTwo)
+      setLosingPlayerScore(userTwoScore)
     }
     else{
-      setWinningPlayer(username2)
-      setWinningPlayerScore(username2.score)
-      setLosingPlayer(username1)
-      setLosingPlayerScore(username1.score)
+      setWinningPlayer(userTwo)
+      setWinningPlayerScore(userTwoScore)
+      setLosingPlayer(userOne)
+      setLosingPlayerScore(userOneScore)
     }
     return () => {
-      if (answerIsCorrect){
-          score += 100
-          handleScoreUpdate(username, score)
-      }
-      setRoundNumber(roundNumber + 1)
-      setToNewRound(true)
-      wait(2000);
     };
   }, [fetchingComplete]);
   
@@ -61,11 +56,11 @@ const ResultsPage= ({}) => {
 
       <div className="logo"></div>
 
-      <a href="index.html">
+      <Link to="/">Play again!
         <div className="home-button">
           <i className="fas fa-home"></i>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };

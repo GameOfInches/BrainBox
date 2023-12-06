@@ -3,24 +3,41 @@ import Timer from './Timer';
 import '../App.css';
 import GameStart from './GameStart';
 
-const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, setToNewRound}) => {
+const AnswerPage= ({score, setScore, lobbyId, questionType, username, roundNumber, setRoundNumber, toNewRound, setToNewRound}) => {
   const [timeLeft, setTimeLeft] = useState(10);
   const [timeOut, setTimeOut] = useState(false);
-  const [answerChosen, setAnswerChosen] = useState(false);
+  const [answerChosen, setAnswerChosen] = useState(5);
   const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
   const apiUrl = 'http://localhost:8080/api';
 
+//placeholders
+const [fetchingComplete, setFetchingComplete] = useState(false)
+const [questionText, setQuestionText] = useState("")
+const [options, setOptions] = useState([])
+const [correctAnswer, setCorrectAnswer] = useState(0)
 
+setFetchingComplete(true)
 
-  //placeholder for score
-  const score = 0
-
-  //placeholder for question
-  const questionText = " "
-
-  //placeholder for correct answer
-  //placeholder for answer options
-  const options = [" "]
+useEffect(() => {
+  if (questionType == "image"){
+    setQuestionText("What is Ukraine the largest producer of?")
+    setOptions(["Iron ore",	"Wheat",	"Grain",	"Sunflower seeds"])
+    setCorrectAnswer(3)
+  }
+  else if (questionType == "audio"){
+    setQuestionText("How did the authorities respond to the Dancing Plague of 1518?")
+    setOptions(["They isolated and quarantined the affected individuals.",	"They banned all forms of dancing.",	"They imposed curfews to prevent dancing.",	"They encouraged more dancing, hoping it would cure the afflicted."])
+    setCorrectAnswer(3)
+  }
+  else if (questionType == "video"){
+    setQuestionText("What was one of Abraham Lincoln's remarkable skills?")
+    setOptions(["He was a proficient musician.",	"He was a renowned painter.",	"He was a skilled wrestler.",	"He was a talented sculptor."])
+    setCorrectAnswer(2)
+  }
+  return () => {
+  };
+}, [fetchingComplete]);
+  
 
 
   useEffect(() => {
@@ -56,14 +73,18 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
     }
     if (answerChosen){
       console.log("answer chosen")
-      handleScoreUpdate(username, score)
-      //TO-DO: logic to check if answer is correct
-      setAnswerIsCorrect(true)
+      if (answerChosen == correctAnswer){
+        setAnswerIsCorrect(true)
+      }
+      else{
+        setAnswerIsCorrect(false)
+      }
     }
     return () => {
+      
       if (answerIsCorrect){
-          score += 100
-          handleScoreUpdate(username, score)
+          setScore(score + 100);
+          //handleScoreUpdate(username, score)
       }
       setRoundNumber(roundNumber + 1)
       setToNewRound(true)
@@ -72,12 +93,13 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
   }, [timeOut, answerChosen]);
 
   
-    const handleAnswerClick = (option) => {
+    const handleAnswerClick = (index) => {
       // Implement your logic to handle the selected answer.
       console.log("Answer clicked")
-      setAnswerChosen(true)
+      setAnswerChosen(index)
     };
 
+    /*
     const handleScoreUpdate = (player, newScore) => {
         const insertEndpoint = `${apiUrl}/score?action=scoreUpdate&user=${player}&score=${newScore}&gameid=${lobbyId}`;
 
@@ -99,8 +121,9 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
             });
 
     }
+    */
 
-    const fetchQuestion = () => {
+    /*const fetchQuestion = () => {
             const getEndpoint = `${apiUrl}/get?action=getQuestion&gameid=${lobbyId}`;
 
         try {
@@ -129,8 +152,9 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
                   alert('Invalid or empty response.');
                 }
         }
-    }
+    }*/
 
+    /*
     const checkIfCorrect = async (question) => {
       const getEndpoint = `${apiUrl}/getCorrectAnswer?action=getCorrectAnswer&gameid=${lobbyId}&question=${question}`;
 
@@ -146,7 +170,8 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
               const correctAnswer = data;
 
               if (correctAnswer === answerChosen) {
-                handleScoreUpdate(username, 100);
+                //handleScoreUpdate(username, 100);
+                setScore(score + 100);
               } else {
                 // Handle incorrect answer case
                 console.log('Incorrect answer');
@@ -171,7 +196,7 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
         alert('Error fetching data.');
       }
     };
-
+*/
 
 
     
@@ -195,7 +220,7 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
             {options.map((option, index) => (
               <button
                 key={index}
-                onClick={() => handleAnswerClick(option)}
+                onClick={() => handleAnswerClick(index)}
               >
                 {option}
               </button>

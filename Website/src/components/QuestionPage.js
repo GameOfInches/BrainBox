@@ -4,20 +4,14 @@ import Timer from './Timer';
 import AnswerPage from './AnswerPage';
 import ReactPlayer from 'react-player';
 import useSound from 'use-sound';
-import Audio1 from '../Assets/Audio_1.mp3';
-const QuestionPage = ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, setToNewRound}) => {
+import Audio5 from '../Assets/Audio_5.mp3';
+const QuestionPage = ({score, setScore, lobbyId, questionType, questionDuration, username, roundNumber, setRoundNumber, toNewRound, setToNewRound}) => {
     
     const [timeOut, setTimeOut] = useState(false);
-    const [play, { stop }] = useSound(Audio1);
-
-    //placeholder for questiontype
-    const [questionType, setQuestionType] = useState("audio");
-
+    const [play, { stop }] = useSound(Audio5);
 
     //TODO: Fetch from the database the question and the image/video/audio and the type of the content
-    
-    //TODO: Fetch from the database the duration of the content. 
-    const [questionDuration, setQuestionDuration] = useState (10)
+
     const [timeLeft, setTimeLeft] = useState(questionDuration);
 
     
@@ -25,7 +19,7 @@ const QuestionPage = ({lobbyId, username, roundNumber, setRoundNumber, toNewRoun
       // Start the timer countdown
       const countdownInterval = setInterval(() => {
         //this has to be changed when we get time per question from the database
-        if (timeLeft == 9) {
+        if (timeLeft == questionDuration - 1) {
           play();
         }
         if (timeLeft > 0) {
@@ -55,13 +49,12 @@ const QuestionPage = ({lobbyId, username, roundNumber, setRoundNumber, toNewRoun
     //for video playing
     /* */
   
-
     //compare local username to the the one passed in argument?
     return (
       
       <div className="question-card">
         <div>Round {roundNumber}</div>
-        {timeOut ? <AnswerPage username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/> : <><div className="">
+        {timeOut ? <AnswerPage score = {score} questionType = {questionType} setScore = {setScore} username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/> : <><div className="">
             <Timer initialTime={questionDuration * 1000} isPlaying={true} />
           </div>
         <div className="logo">
@@ -74,16 +67,16 @@ const QuestionPage = ({lobbyId, username, roundNumber, setRoundNumber, toNewRoun
           </div>
         ) : questionType === "image" ? (
           <div className="image-container">
-            <img src="card.jpg" alt="Card" />
+            <img src="../Assets/Img_11.png" alt="Card" />
           </div>
         ) : (
           <div className="video-container">
             <ReactPlayer
-              url="https://youtu.be/vjhL4XS_6wY"
+              url="https://youtube.com/shorts/SQDyTIuepMM"
               width="360"
               height="720"
               playing={true}
-              controls
+              controls={false}
             />
           </div>
         )}</>}

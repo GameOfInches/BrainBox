@@ -53,6 +53,13 @@ function HomePage() {
     }
   };
 
+  /*placeholders for questions and answers*/
+  const questionOneType = 'image';
+  const questionOneContent = '';
+
+
+
+
   const generateRandomString = (length) => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
