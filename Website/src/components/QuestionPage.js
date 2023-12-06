@@ -75,7 +75,7 @@ const [play, { stop }] = useSound(Audio5);
           </div>
         ) : questionType === "image" ? (
           <div className="image-container">
-            <img src={Card} />
+            <img src={Card} class="card" />
           </div>
         ) : (
           <div className="">
