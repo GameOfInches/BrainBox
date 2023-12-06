@@ -78,14 +78,15 @@ const [play, { stop }] = useSound(Audio5);
             <img src={Card} class="card" />
           </div>
         ) : (
-          <div className="video-container">
-             <ReactPlayer
-            width="100%"
-            height="100%"
-            url="https://youtube.com/shorts/SQDyTIuepMM"
+          <div>
+            <ReactPlayer
+              className='video'
+              url="https://youtube.com/shorts/SQDyTIuepMM"
+              width='15.625rem'
+              height='25rem'
               playing={true}
               controls={false}
-            />
+            >
           </div>
         )}</>}
         
