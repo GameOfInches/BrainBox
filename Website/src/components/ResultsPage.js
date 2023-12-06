@@ -1,5 +1,5 @@
-import { useState, useEffect, Link } from "react";
-
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 //TODO: fetch scores of both players in the results page
 //TODO: Logic to determine which player won
 
@@ -54,11 +54,6 @@ const ResultsPage= ({userOne, userTwo, userOneScore, userTwoScore}) => {
 
       <div className="logo"></div>
 
-      <Link to="/">Play again!
-        <div className="home-button">
-          <i className="fas fa-home"></i>
-        </div>
-      </Link>
     </div>
   );
 };
