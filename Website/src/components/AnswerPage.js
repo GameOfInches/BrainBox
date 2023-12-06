@@ -131,15 +131,15 @@ const AnswerPage= ({lobbyId, username, roundNumber, setRoundNumber, toNewRound, 
         }
     }
 
-    const checkIfCorrect = async (question) => {
+    const checkIfCorrect = (question) => {
       const getEndpoint = `${apiUrl}/getCorrectAnswer?action=getCorrectAnswer&gameid=${lobbyId}&question=${question}`;
 
       try {
-        const response = await fetch(getEndpoint);
+        const response = fetch(getEndpoint);
 
         if (response.ok) {
           try {
-            const data = await response.text();
+            const data = response.text();
 
             // Check if data is not undefined
             if (typeof data !== 'undefined' && data !== null) {
