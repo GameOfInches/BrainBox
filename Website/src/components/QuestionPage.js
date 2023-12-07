@@ -60,38 +60,39 @@ const [play, { stop }] = useSound(Audio5);
   
     //compare local username to the the one passed in argument?
     return (
-      
-      <div className="question-card">
-        <div>Round {roundNumber}</div>
-        {timeOut ? <AnswerPage score = {score} questionType = {questionType} setScore = {setScore} username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/> : <><div className="">
-            <Timer initialTime={questionDuration * 1000} isPlaying={true} />
+
+          <div className="question-card">
+            <div>Round {roundNumber}</div>
+            {timeOut ? <AnswerPage score = {score} questionType = {questionType} setScore = {setScore} username = {username} roundNumber = {roundNumber} setRoundNumber = {setRoundNumber} toNewRound = {toNewRound} setToNewRound = {setToNewRound}/> : <><div className="">
+                <Timer initialTime={questionDuration * 1000} isPlaying={true} />
+              </div>
+            <div className="logo">
+              <img src="planet.png" alt="Logo" />
+            </div>
+            <div className="title">Memorize the contents, {username}...</div>
+            {questionType === "audio" ? (
+              <div className="audio-container">
+              </div>
+            ) : questionType === "image" ? (
+              <div className="image-container">
+                <img src={Card} class="card" />
+              </div>
+            ) : (
+              <div>
+                <ReactPlayer
+                  className='video'
+                  url="https://youtube.com/shorts/SQDyTIuepMM"
+                  width='15.625rem'
+                  height='25rem'
+                  playing={true}
+                  controls={false}
+                />
+              </div>
+            )}</>}
+
           </div>
-        <div className="logo">
-          <img src="planet.png" alt="Logo" />
-        </div>
-        <div className="title">Memorize the contents, {username}...</div>
-        {questionType === "audio" ? (
-          <div className="audio-container">
-          </div>
-        ) : questionType === "image" ? (
-          <div className="image-container">
-            <img src={Card} class="card" />
-          </div>
-        ) : (
-          <div>
-            <ReactPlayer
-              className='video'
-              url="https://youtube.com/shorts/SQDyTIuepMM"
-              width='15.625rem'
-              height='25rem'
-              playing={true}
-              controls={false}
-          </div>
-        )}</>}
-        
-      </div>
-         
-    );
-};
-  
-  export default QuestionPage;
+
+        );
+    };
+
+      export default QuestionPage;
