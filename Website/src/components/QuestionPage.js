@@ -86,7 +86,6 @@ const [play, { stop }] = useSound(Audio5);
               height='25rem'
               playing={true}
               controls={false}
-            >
           </div>
         )}</>}
         
