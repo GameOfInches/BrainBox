@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@500&family=Unkempt&display=swap');
 
-
 body {
     background-image: url('./pictures/background5.jpg');
     background-size: cover;
@@ -212,7 +211,7 @@ body {
   margin: 0 5rem; /* Converted from 0px 80px */
   border-radius: 5.125rem; /* Converted from 50px */
   display: inline-block;
-  font-size: 1.8rem;
+  font-size: 2.8rem;   /* changes -----*/
 }
 
 .start-game-button {
@@ -223,7 +222,7 @@ body {
   border-radius: 0.9375rem; /* Converted from 15px */
   border: none;
   cursor: pointer;
-  margin-top: 6.25rem; /* Converted from 100px */
+  margin-top: 1.25rem; /* changes -----*/
   transition: background-color 0.3s;
   box-shadow: rgba(50, 50, 93, 0.25) 0rem 3.125rem 6.25rem -1.25rem, rgba(0, 0, 0, 0.3) 0rem 1.875rem 3.75rem -1.875rem, rgba(10, 37, 64, 0.35) 0rem -0.125rem 0.375rem 0rem inset;
 }
